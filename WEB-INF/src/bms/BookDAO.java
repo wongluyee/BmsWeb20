@@ -26,6 +26,7 @@ public class BookDAO {
 		}
 	}
 
+	// 一覧メソッド
 	public ArrayList<Book> selectAll() {
 
 		Connection con = null;
@@ -64,5 +65,36 @@ public class BookDAO {
 			}
 		}
 		return bookList;
+	}
+
+	// 追加メソッド
+	public void insert(Book book) {
+
+		Connection con = null;
+		Statement smt = null;
+
+		try {
+			String sql = "INSERT INTO bookinfo VALUES('" + book.getIsbn() + "','" + book.getTitle() + "',"
+					+ book.getPrice() + ")";
+			con = getConnection();
+			smt = con.createStatement();
+			smt.executeUpdate(sql);
+
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
 	}
 }

@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="container text-center"">
-	<h1 class="title">書籍管理システムweb版ver.1.0</h1>
+	<h1 class="text-center">書籍管理システムweb版ver.1.0</h1>
 	<hr class="border border-primary">
 
 	<table style="margin:auto; width:850px">
