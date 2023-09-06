@@ -34,4 +34,13 @@
 		<servlet-name>deleteMapping</servlet-name>
 		<url-pattern>/delete</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>updateMapping</servlet-name>
+		<servlet-class>bms.UpdateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateMapping</servlet-name>
+		<url-pattern>/update</url-pattern>
+	</servlet-mapping>
 </web-app>

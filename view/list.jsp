@@ -61,22 +61,22 @@
 			<%
 				if (list != null) {
 					for (int i = 0; i < list.size(); i++) {
-						Book books = (Book) list.get(i);
+						Book book = (Book) list.get(i);
 			%>
 			<tr>
-				<td style="text-align: center; width: 200px"><a
-					href="<%=request.getContextPath()%>/detail?isbn=<%=books.getIsbn()%>&cmd=detail"><%=books.getIsbn()%></a></td>
-				<td style="text-align: center; width: 200px"><%=books.getTitle()%></td>
-				<td style="text-align: center; width: 200px"><%=books.getPrice()%></td>
+				<td style="text-align: center; width: 200px">
+				<a href="<%=request.getContextPath()%>/detail?isbn=<%=book.getIsbn()%>&cmd=detail"><%=book.getIsbn()%></a></td>
+				<td style="text-align: center; width: 200px"><%=book.getTitle()%></td>
+				<td style="text-align: center; width: 200px"><%=book.getPrice()%></td>
 				<td style="text-align: center; width: 125px">
-				<a href="<%=request.getContextPath()%>/detail?isbn=<%=books.getIsbn()%>&cmd=update">変更</a>
+				<a href="<%=request.getContextPath()%>/detail?isbn=<%=book.getIsbn()%>&cmd=update">変更</a>
 				</td>
 				<td style="text-align: left; width: 125px">
-				<a href="<%=request.getContextPath()%>/delete?isbn=<%=books.getIsbn()%>">削除</a>
+				<a href="<%=request.getContextPath()%>/delete?isbn=<%=book.getIsbn()%>">削除</a>
 				</td>
 			</tr>
 			<%
-				}
+					}
 				} else {
 			%>
 			<tr>

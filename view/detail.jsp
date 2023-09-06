@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="bms.Book"%>
 <%
-//リクエストスコープからのデータの取得
+	//リクエストスコープからのデータの取得
 	Book book = (Book)request.getAttribute("book");
 %>
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
 			</tr>
 		</table>
 		<hr class="menu-border">
-		<div style="margin-bottom: 400px" class="text-center">
+		<div style="margin-bottom: 230px" class="text-center">
 			<div class="mb-4">
 				<a class="btn btn-primary" href="<%=request.getContextPath()%>/detail?isbn=<%=book.getIsbn()%>&cmd=update">変更</a>
 				<a class="btn btn-primary" href="<%=request.getContextPath()%>/delete?isbn=<%=book.getIsbn()%>">削除</a>
