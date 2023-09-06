@@ -97,4 +97,43 @@ public class BookDAO {
 			}
 		}
 	}
+
+	// 詳細メソッド
+	public Book selectByIsbn(String isbn) {
+
+		Connection con = null;
+		Statement smt = null;
+
+		Book book = new Book();
+
+		try {
+			String sql = "SELECT isbn,title,price FROM bookinfo WHERE isbn = '" + isbn + "'";
+			con = getConnection();
+			smt = con.createStatement();
+			ResultSet rs = smt.executeQuery(sql);
+
+			// 結果セットから書籍データを取り出し、Bookオブジェクトに格納する
+			while (rs.next()) {
+				book.setIsbn(rs.getString("isbn"));
+				book.setTitle(rs.getString("title"));
+				book.setPrice(rs.getInt("price"));
+			}
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
+		return book;
+	}
 }

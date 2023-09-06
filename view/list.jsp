@@ -68,11 +68,11 @@
 					href="<%=request.getContextPath()%>/detail?isbn=<%=books.getIsbn()%>&cmd=detail"><%=books.getIsbn()%></a></td>
 				<td style="text-align: center; width: 200px"><%=books.getTitle()%></td>
 				<td style="text-align: center; width: 200px"><%=books.getPrice()%></td>
-				<td style="text-align: center; width: 125px"><a
-					href="<%=request.getContextPath()%>/detail?isbn=<%=books.getIsbn()%>&cmd=update">変更</a>
+				<td style="text-align: center; width: 125px">
+				<a href="<%=request.getContextPath()%>/detail?isbn=<%=books.getIsbn()%>&cmd=update">変更</a>
 				</td>
-				<td style="text-align: left; width: 125px"><a
-					href="<%=request.getContextPath()%>/delete?isbn=<%=books.getIsbn()%>">削除</a>
+				<td style="text-align: left; width: 125px">
+				<a href="<%=request.getContextPath()%>/delete?isbn=<%=books.getIsbn()%>">削除</a>
 				</td>
 			</tr>
 			<%

@@ -16,4 +16,13 @@
 		<servlet-name>insertMapping</servlet-name>
 		<url-pattern>/insert</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>detailMapping</servlet-name>
+		<servlet-class>bms.DetailServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>detailMapping</servlet-name>
+		<url-pattern>/detail</url-pattern>
+	</servlet-mapping>
 </web-app>
