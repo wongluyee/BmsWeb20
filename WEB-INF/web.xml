@@ -43,4 +43,13 @@
 		<servlet-name>updateMapping</servlet-name>
 		<url-pattern>/update</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>searchMapping</servlet-name>
+		<servlet-class>bms.SearchServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>searchMapping</servlet-name>
+		<url-pattern>/search</url-pattern>
+	</servlet-mapping>
 </web-app>

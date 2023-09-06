@@ -38,12 +38,29 @@ public class InsertServlet extends HttpServlet {
 			}
 
 			String title = request.getParameter("title");
-			int price = Integer.parseInt(request.getParameter("price"));
+
+			// Titleの入力チェック
+			if (title.equals("")) {
+				error = "Title未入力のため、書籍登録処理は行えませんでした。";
+				request.setAttribute("error", error);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+			}
+
+			String price = request.getParameter("price");
+
+			// Priceの入力チェック
+			if (price.equals("")) {
+				error = "Price未入力のため、書籍登録処理は行えませんでした。";
+				request.setAttribute("error", error);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+			}
+
+			int intPrice = Integer.parseInt(price);
 
 			// Bookオブジェクトに格納
 			book.setIsbn(isbn);
 			book.setTitle(title);
-			book.setPrice(price);
+			book.setPrice(intPrice);
 
 			// Bookオブジェクトに格納された書籍データをデータベースに登録
 			objDao.insert(book);
@@ -52,8 +69,12 @@ public class InsertServlet extends HttpServlet {
 			request.getRequestDispatcher("/list").forward(request, response);
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";
+			request.setAttribute("error", error);
+			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		} catch (Exception e) {
 			error = "予期せぬエラーが発生しました。<br>" + e;
+			request.setAttribute("error", error);
+			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		}
 	}
 

@@ -27,7 +27,6 @@
 				<td style="width:80px">&nbsp;</td>
 				<td style="width:80px">&nbsp;</td>
 			</tr>
-		</tr>
 	</table>
 
 	<hr class="menu-border">

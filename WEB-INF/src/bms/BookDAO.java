@@ -173,8 +173,7 @@ public class BookDAO {
 
 		try {
 			String sql = "UPDATE bookinfo SET isbn='" + book.getIsbn() + "',title='" + book.getTitle() + "',price="
-					+ book.getPrice()
-					+ " WHERE isbn='" + book.getIsbn() + "'";
+					+ book.getPrice() + " WHERE isbn='" + book.getIsbn() + "'";
 			con = getConnection();
 			smt = con.createStatement();
 			smt.executeUpdate(sql);
@@ -195,5 +194,47 @@ public class BookDAO {
 				}
 			}
 		}
+	}
+
+	// 検索メソッド
+	public ArrayList<Book> search(String isbn, String title, String price) {
+
+		Connection con = null;
+		Statement smt = null;
+
+		ArrayList<Book> bookList = new ArrayList<Book>();
+		try {
+			String sql = "SELECT isbn,title,price FROM bookinfo " +
+					"WHERE isbn LIKE '%" + isbn + "%' AND title LIKE '%" + title + "%' AND price LIKE '%" + price + "%'";
+			con = getConnection();
+			smt = con.createStatement();
+			ResultSet rs = smt.executeQuery(sql);
+
+			// Bookインスタンス化して、各データを格納して、bookListに追加する
+			while (rs.next()) {
+				Book book = new Book();
+				book.setIsbn(rs.getString("isbn"));
+				book.setTitle(rs.getString("title"));
+				book.setPrice(rs.getInt("price"));
+				bookList.add(book);
+			}
+
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
+		return bookList;
 	}
 }

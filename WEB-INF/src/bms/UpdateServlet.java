@@ -22,11 +22,19 @@ public class UpdateServlet extends HttpServlet {
 			// 画面からの入力情報を受け取り
 			String isbn = request.getParameter("isbn");
 			String title = request.getParameter("title");
-			int price = Integer.parseInt(request.getParameter("price"));
+			String price = request.getParameter("price");
 
-			// 価格の値のチェック
-			if (price <= 0) {
-				error = "価格の値が不正の為、書籍更新処理は行えませんでした。";
+			// Priceの入力チェック
+			if (price.equals("")) {
+				error = "Price未入力のため、書籍登録処理は行えませんでした。";
+				request.setAttribute("error", error);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+			}
+
+			int intPrice = Integer.parseInt(price);
+
+			if (intPrice <= 0) {
+				error = "価格が0以下の為、書籍登録処理は行えませんでした。";
 				request.setAttribute("error", error);
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			}
@@ -34,17 +42,21 @@ public class UpdateServlet extends HttpServlet {
 			// Bookオブジェクトに格納
 			book.setIsbn(isbn);
 			book.setTitle(title);
-			book.setPrice(price);
+			book.setPrice(intPrice);
 
 			// Bookオブジェクトに格納された書籍データでデータベースを更新
 			objDao.update(book);
 
-			//「ListServlet」へフォワード
+			// 「ListServlet」へフォワード
 			request.getRequestDispatcher("/list").forward(request, response);
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";
+			request.setAttribute("error", error);
+			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		} catch (Exception e) {
 			error = "予期せぬエラーが発生しました。<br>" + e;
+			request.setAttribute("error", error);
+			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		}
 	}
 
