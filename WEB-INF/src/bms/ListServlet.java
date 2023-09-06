@@ -23,6 +23,7 @@ public class ListServlet extends HttpServlet {
 
  			//検索結果を持ってlist.jspにフォワード
  			request.setAttribute("list", list);
+ 			request.getRequestDispatcher("/view/list.jsp").forward(request, response);
 
  		}catch (IllegalStateException e) {
  			error ="DB接続エラーの為、一覧表示はできませんでした。";
@@ -32,7 +33,6 @@ public class ListServlet extends HttpServlet {
 
  		}finally{
  			request.setAttribute("error", error);
- 			request.getRequestDispatcher("/view/list.jsp").forward(request, response);
  		}
 	}
 

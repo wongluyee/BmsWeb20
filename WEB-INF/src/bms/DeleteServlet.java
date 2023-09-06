@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
-public class InsertServlet extends HttpServlet {
+public class DeleteServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String error = "";
 
@@ -13,26 +13,16 @@ public class InsertServlet extends HttpServlet {
 			// BookDAOクラスのオブジェクトを生成
 			BookDAO objDao = new BookDAO();
 
-			// 登録する書籍情報を格納するBookオブジェクトを生成
-			Book book = new Book();
-
-			// 画面からの入力情報を受け取るためのエンコードを設定
+			// エンコードを設定
 			response.setContentType("text/html; charset=UTF-8");
 
-			// 画面からの入力情報を受け取り
+			// 画面から送信されるISBN情報を受け取る
 			String isbn = request.getParameter("isbn");
-			String title = request.getParameter("title");
-			int price = Integer.parseInt(request.getParameter("price"));
 
-			// Bookオブジェクトに格納
-			book.setIsbn(isbn);
-			book.setTitle(title);
-			book.setPrice(price);
+			// 書籍情報を削除
+			objDao.delete(isbn);
 
-			// Bookオブジェクトに格納された書籍データをデータベースに登録
-			objDao.insert(book);
-
-			// 一覧画面に戻る
+			//「ListServlet」へフォワード
 			request.getRequestDispatcher("/list").forward(request, response);
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";

@@ -136,4 +136,33 @@ public class BookDAO {
 		}
 		return book;
 	}
+
+	// 削除メソッド
+	public void delete(String isbn) {
+		Connection con = null;
+		Statement smt = null;
+
+		try {
+			String sql = "DELETE FROM bookinfo WHERE isbn = '" + isbn + "'";
+			con = getConnection();
+			smt = con.createStatement();
+			smt.executeUpdate(sql);
+
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
+	}
 }

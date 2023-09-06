@@ -33,14 +33,10 @@ public class DetailServlet extends HttpServlet {
 			if (cmd.equals("detail")) {
 				request.getRequestDispatcher("/view/detail.jsp").forward(request, response);
 			}
-
-
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";
-
 		} catch (Exception e) {
 			error = "予期せぬエラーが発生しました。<br>" + e;
-
 		} finally {
 			request.setAttribute("error", error);
 		}

@@ -25,4 +25,13 @@
 		<servlet-name>detailMapping</servlet-name>
 		<url-pattern>/detail</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>deleteMapping</servlet-name>
+		<servlet-class>bms.DeleteServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteMapping</servlet-name>
+		<url-pattern>/delete</url-pattern>
+	</servlet-mapping>
 </web-app>
