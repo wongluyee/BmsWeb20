@@ -14,7 +14,7 @@
 	<title>書籍一覧</title>
 </head>
 <body>
-<div class="container text-center"">
+<div class="container text-center">
 	<h1 class="text-center">書籍管理システムweb版ver.1.0</h1>
 	<hr class="border border-primary">
 

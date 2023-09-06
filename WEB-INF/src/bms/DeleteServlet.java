@@ -19,6 +19,13 @@ public class DeleteServlet extends HttpServlet {
 			// 画面から送信されるISBN情報を受け取る
 			String isbn = request.getParameter("isbn");
 
+			// 書籍存在するかのチェック
+			if (isbn.equals("")) {
+				error = "削除対象の書籍が存在しない為、書籍削除処理は行えませんでした。";
+				request.setAttribute("error", error);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+			}
+
 			// 書籍情報を削除
 			objDao.delete(isbn);
 

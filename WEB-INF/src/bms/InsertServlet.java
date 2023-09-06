@@ -21,6 +21,22 @@ public class InsertServlet extends HttpServlet {
 
 			// 画面からの入力情報を受け取り
 			String isbn = request.getParameter("isbn");
+
+			// ISBNの入力チェック
+			if (isbn.equals("")) {
+				error = "ISBN未入力のため、書籍登録処理は行えませんでした。";
+				request.setAttribute("error", error);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+			}
+
+			// ISBN重複のチェック
+			Book checkBook = objDao.selectByIsbn(isbn);
+			if (checkBook.getIsbn() != null) {
+				error = "入力ISBNは既に登録済みの為、書籍登録処理は行えませんでした。";
+				request.setAttribute("error", error);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+			}
+
 			String title = request.getParameter("title");
 			int price = Integer.parseInt(request.getParameter("price"));
 
@@ -38,8 +54,6 @@ public class InsertServlet extends HttpServlet {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";
 		} catch (Exception e) {
 			error = "予期せぬエラーが発生しました。<br>" + e;
-		} finally {
-			request.setAttribute("error", error);
 		}
 	}
 

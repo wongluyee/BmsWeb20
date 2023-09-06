@@ -19,10 +19,19 @@ public class UpdateServlet extends HttpServlet {
 			// エンコードを設定
 			response.setContentType("text/html; charset=UTF-8");
 
-			// 画面からの入力情報を受け取り、Bookオブジェクトに格納
+			// 画面からの入力情報を受け取り
 			String isbn = request.getParameter("isbn");
 			String title = request.getParameter("title");
 			int price = Integer.parseInt(request.getParameter("price"));
+
+			// 価格の値のチェック
+			if (price <= 0) {
+				error = "価格の値が不正の為、書籍更新処理は行えませんでした。";
+				request.setAttribute("error", error);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+			}
+
+			// Bookオブジェクトに格納
 			book.setIsbn(isbn);
 			book.setTitle(title);
 			book.setPrice(price);
@@ -36,8 +45,6 @@ public class UpdateServlet extends HttpServlet {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";
 		} catch (Exception e) {
 			error = "予期せぬエラーが発生しました。<br>" + e;
-		} finally {
-			request.setAttribute("error", error);
 		}
 	}
 
