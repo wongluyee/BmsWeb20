@@ -9,8 +9,7 @@
 	</head>
 	<body>
 	<div class="container">
-		<h1 class="text-center">書籍管理システムweb版ver2.0</h1>
-		<hr class="border border-primary">
+		<%@include file= "../common/header.jsp" %>
 		<p class="menu-text">Menu</p>
 		<hr class="menu-border">
 		<div class="options d-flex justify-content-center ">
@@ -19,8 +18,7 @@
 				<a class="btn btn-primary" href="./insert.jsp">書籍登録</a>
 			</div>
 		</div>
-		<hr class="border border-primary">
-		<p class="footer">Copyright (c) 2023 all rights reserved.</p>
+		<%@include file= "../common/footer.jsp" %>
 	</div>
 	</body>
 </html>

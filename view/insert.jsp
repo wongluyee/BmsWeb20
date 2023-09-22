@@ -9,8 +9,7 @@
 </head>
 <body>
 	<div class="container">
-	<h1 class="text-center">書籍管理システムweb版ver2.0</h1>
-	<hr class="border border-primary">
+	<%@include file= "../common/header.jsp" %>
 
 	<table style="margin:auto; width:850px">
 		<tr>
@@ -36,8 +35,7 @@
 			<input class="btn btn-primary" type="submit" value="登録">
 		</form>
 	</div>
-		<hr class="border border-primary">
-		<p class="footer">Copyright (c) 2023 all rights reserved.</p>
+	<%@include file= "../common/footer.jsp" %>
 	</div>
 </body>
 </html>

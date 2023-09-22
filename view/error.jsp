@@ -10,8 +10,7 @@
 </head>
 <body>
 	<div class="container text-center">
-		<h1 class="text-center">書籍管理システムweb版ver2.0</h1>
-		<hr class="border border-primary">
+		<%@include file= "../common/header.jsp" %>
 		<div style="margin:auto;">
 			<h3>エラー</h3>
 			<% if (error != null) { %>
@@ -19,8 +18,7 @@
 			<% } %>
 			<a href="<%=request.getContextPath() %>/list">[書籍一覧]</a>
 		</div>
-		<hr class="border border-primary">
-		<p class="footer">Copyright (c) 2023 all rights reserved.</p>
+		<%@include file= "../common/footer.jsp" %>
 	</div>
 </body>
 </html>

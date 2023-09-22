@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="bean.Book"%>
+<%@ page import="bean.Book"%>
 <%
 	//リクエストスコープからのデータの取得
 	Book book = (Book)request.getAttribute("book");
@@ -14,8 +14,7 @@
 </head>
 <body>
 	<div class="container">
-		<h1 class="text-center">書籍管理システムweb版ver2.0</h1>
-		<hr class="border border-primary">
+		<%@include file= "../common/header.jsp" %>
 
 		<table style="margin:auto; width:850px">
 			<tr>
@@ -40,8 +39,7 @@
 			<p class="fw-bold">Title: <%= book.getTitle() %></p>
 			<p class="fw-bold">価格: <%= book.getPrice() %></p>
 		</div>
-		<hr class="border border-primary">
-		<p class="footer text-center">Copyright (c) 2023 all rights reserved.</p>
+		<%@include file= "../common/footer.jsp" %>
 	</div>
 </body>
 </html>
