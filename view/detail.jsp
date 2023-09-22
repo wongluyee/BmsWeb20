@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="bean.Book"%>
+<%@ page import="bean.Book,util.MyFormat"%>
 <%
 	//リクエストスコープからのデータの取得
 	Book book = (Book)request.getAttribute("book");
+	// Price format
+	MyFormat fm = new MyFormat();
 %>
 <!DOCTYPE html>
 <html>
@@ -37,7 +39,7 @@
 			</div>
 			<p class="fw-bold">ISBN: <%= book.getIsbn() %></p>
 			<p class="fw-bold">Title: <%= book.getTitle() %></p>
-			<p class="fw-bold">価格: <%= book.getPrice() %></p>
+			<p class="fw-bold">価格: <%= fm.moneyFormat(book.getPrice()) %></p>
 		</div>
 		<%@include file= "../common/footer.jsp" %>
 	</div>

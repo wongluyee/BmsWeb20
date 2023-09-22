@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="java.util.ArrayList,bean.Book"%>
+<%@ page import="java.util.ArrayList,bean.Book,util.MyFormat"%>
+<% MyFormat fm = new MyFormat(); %>
 <%
 	ArrayList<Book> list = (ArrayList<Book>) request.getAttribute("list");
 	String error = (String) request.getAttribute("error");
@@ -60,12 +61,13 @@
 				if (list != null) {
 					for (int i = 0; i < list.size(); i++) {
 						Book book = (Book) list.get(i);
+						String formattedPrice = fm.moneyFormat(book.getPrice());
 			%>
 			<tr>
 				<td style="text-align: center; width: 200px">
-				<a href="<%=request.getContextPath()%>/detail?isbn=<%=book.getIsbn()%>&cmd=detail"><%=book.getIsbn()%></a></td>
-				<td style="text-align: center; width: 200px"><%=book.getTitle()%></td>
-				<td style="text-align: center; width: 200px"><%=book.getPrice()%></td>
+				<a href="<%=request.getContextPath()%>/detail?isbn=<%= book.getIsbn() %>&cmd=detail"><%=book.getIsbn()%></a></td>
+				<td style="text-align: center; width: 200px"><%= book.getTitle() %></td>
+				<td style="text-align: center; width: 200px"><%= formattedPrice %></td>
 				<td style="text-align: center; width: 125px">
 				<a href="<%=request.getContextPath()%>/detail?isbn=<%=book.getIsbn()%>&cmd=update">変更</a>
 				</td>
