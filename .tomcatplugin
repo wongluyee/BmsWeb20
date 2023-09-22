@@ -9,5 +9,5 @@
     <warLocation></warLocation>
     <extraInfo></extraInfo>
     <mavenClasspath>false</mavenClasspath>
-    <webPath>/bmsweb10j_luyee</webPath>
+    <webPath>/bmsweb20j_luyee</webPath>
 </tomcatProjectProperties>
