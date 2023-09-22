@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="bms.Book"%>
+<%@page import="bean.Book"%>
 <%
 	//リクエストスコープからのデータの取得
 	Book book = (Book)request.getAttribute("book");
@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="container">
-		<h1 class="text-center">書籍管理システムweb版ver.1.0</h1>
+		<h1 class="text-center">書籍管理システムweb版ver2.0</h1>
 		<hr class="border border-primary">
 
 		<table style="margin:auto; width:850px">

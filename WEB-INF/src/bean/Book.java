@@ -1,4 +1,4 @@
-package bms;
+package bean;
 
 public class Book {
 	// フィールド変数

@@ -1,4 +1,4 @@
-package bms;
+package servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
-public class SearchServlet extends HttpServlet {
+import bean.Book;
+import dao.BookDAO;
+
+public class ListServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String error = "";
 
@@ -14,21 +17,14 @@ public class SearchServlet extends HttpServlet {
 			// BookDAOクラスのオブジェクトを生成
 			BookDAO objDao = new BookDAO();
 
-			// 画面から送信される検索条件を受け取るためのエンコードを設定
-			response.setContentType("text/html; charset=UTF-8");
+			// 検索した書籍情報を格納する配列
+			ArrayList<Book> list = new ArrayList<Book>();
 
-			// 画面から送信される検索条件を受け取り
-			String isbn = request.getParameter("isbn");
-			String title = request.getParameter("title");
-			String price = request.getParameter("price");
-
-			// BookDAOクラスに定義したsearch（）メソッドを利用して書籍情報を取得
-			ArrayList<Book> book_list = objDao.search(isbn, title, price);
-
-			// 取得した書籍情報を「list」という名前でリクエストスコープに登録
-			request.setAttribute("list", book_list);
+			// 全検索メソッドを呼び出し
+			list = objDao.selectAll();
 
 			// 検索結果を持ってlist.jspにフォワード
+			request.setAttribute("list", list);
 			request.getRequestDispatcher("/view/list.jsp").forward(request, response);
 
 		} catch (IllegalStateException e) {

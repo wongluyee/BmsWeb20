@@ -9,7 +9,7 @@
 	</head>
 	<body>
 	<div class="container">
-		<h1 class="text-center">書籍管理システムweb版ver.1.0</h1>
+		<h1 class="text-center">書籍管理システムweb版ver2.0</h1>
 		<hr class="border border-primary">
 		<p class="menu-text">Menu</p>
 		<hr class="menu-border">

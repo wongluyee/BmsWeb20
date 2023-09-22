@@ -1,7 +1,9 @@
-package bms;
+package dao;
 
 import java.sql.*;
 import java.util.ArrayList;
+
+import bean.Book;
 
 public class BookDAO {
 
