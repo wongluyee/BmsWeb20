@@ -31,16 +31,18 @@ public class DeleteServlet extends HttpServlet {
 			// 書籍情報を削除
 			objDao.delete(isbn);
 
-			// 「ListServlet」へフォワード
-			request.getRequestDispatcher("/list").forward(request, response);
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";
-			request.setAttribute("error", error);
-			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		} catch (Exception e) {
 			error = "予期せぬエラーが発生しました。<br>" + e;
-			request.setAttribute("error", error);
-			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+		} finally {
+			if (error.equals("")) {
+				// 「ListServlet」へフォワード
+				request.getRequestDispatcher("/list").forward(request, response);
+			} else {
+				request.setAttribute("error", error);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+			}
 		}
 	}
 

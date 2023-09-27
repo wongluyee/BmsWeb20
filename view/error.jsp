@@ -17,6 +17,7 @@
 				<p><%= error %></p>
 			<% } %>
 			<a href="<%=request.getContextPath() %>/list">[書籍一覧]</a>
+			<a href="<%=request.getContextPath() %>/view/login.jsp">[ログインページ]</a>
 		</div>
 		<%@include file= "../common/footer.jsp" %>
 	</div>

@@ -16,6 +16,8 @@
 	<body>
 		<div class="container">
 			<%@include file= "../common/header.jsp" %>
+			<%@include file= "../common/userInfo.jsp" %>
+			<hr class="menu-border">
 
 			<table style="margin:auto; width:850px">
 				<tr>
@@ -31,7 +33,7 @@
 				</tr>
 			</table>
 			<hr class="menu-border">
-			<div style="margin-bottom: 200px" class="text-center d-flex justify-content-center gap-3">
+			<div style="margin-bottom: 130px" class="text-center d-flex justify-content-center gap-3">
 				<div class="before-update">
 					<h5>変更前情報</h5>
 					<p class="fw-bold">ISBN: <%= book.getIsbn() %></p>

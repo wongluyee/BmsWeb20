@@ -10,6 +10,8 @@
 <body>
 	<div class="container">
 	<%@include file= "../common/header.jsp" %>
+	<%@include file= "../common/userInfo.jsp" %>
+	<hr class="menu-border">
 
 	<table style="margin:auto; width:850px">
 		<tr>
@@ -24,17 +26,17 @@
 	</table>
 
 	<hr class="menu-border">
-	<div style="margin-bottom: 250px">
-		<form action="<%=request.getContextPath()%>/insert"  method="GET">
-			<label for="isbn" class="form-label">ISBN</label>
-			<input type="text" class="form-control mb-3" name="isbn">
-			<label for="title" class="form-label">Title</label>
-			<input type="text" class="form-control mb-3" name="title">
-			<label for="price" class="form-label">価格</label>
-			<input type="number" class="form-control mb-3" name="price">
-			<input class="btn btn-primary" type="submit" value="登録">
-		</form>
-	</div>
+
+	<form action="<%=request.getContextPath()%>/insert"  method="GET">
+		<label for="isbn" class="form-label">ISBN</label>
+		<input type="text" class="form-control mb-3" name="isbn">
+		<label for="title" class="form-label">Title</label>
+		<input type="text" class="form-control mb-3" name="title">
+		<label for="price" class="form-label">価格</label>
+		<input type="number" class="form-control mb-3" name="price">
+		<input class="btn btn-primary" type="submit" value="登録">
+	</form>
+
 	<%@include file= "../common/footer.jsp" %>
 	</div>
 </body>

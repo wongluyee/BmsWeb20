@@ -43,12 +43,13 @@ public class DetailServlet extends HttpServlet {
 			}
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";
-			request.setAttribute("error", error);
-			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		} catch (Exception e) {
 			error = "予期せぬエラーが発生しました。<br>" + e;
-			request.setAttribute("error", error);
-			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+		} finally {
+			if (!error.equals("")) {
+				request.setAttribute("error", error);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+			}
 		}
 	}
 

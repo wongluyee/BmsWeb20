@@ -68,16 +68,18 @@ public class InsertServlet extends HttpServlet {
 			// Bookオブジェクトに格納された書籍データをデータベースに登録
 			objDao.insert(book);
 
-			// 一覧画面に戻る
-			request.getRequestDispatcher("/list").forward(request, response);
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";
-			request.setAttribute("error", error);
-			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		} catch (Exception e) {
 			error = "予期せぬエラーが発生しました。<br>" + e;
-			request.setAttribute("error", error);
-			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+		} finally {
+			if (error.equals("")) {
+				// 一覧画面に戻る
+				request.getRequestDispatcher("/list").forward(request, response);
+			} else {
+				request.setAttribute("error", error);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+			}
 		}
 	}
 

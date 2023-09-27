@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList,bean.Book,util.MyFormat"%>
-<% MyFormat fm = new MyFormat(); %>
 <%
 	ArrayList<Book> list = (ArrayList<Book>) request.getAttribute("list");
-	String error = (String) request.getAttribute("error");
+	MyFormat fm = new MyFormat();
 %>
 <!DOCTYPE html>
 <html>
@@ -17,7 +16,8 @@
 <body>
 <div class="container text-center">
 	<%@include file= "../common/header.jsp" %>
-
+	<%@include file= "../common/userInfo.jsp" %>
+	<hr class="menu-border">
 	<table style="margin:auto; width:850px">
 		<tr>
 			<tr>
@@ -30,7 +30,7 @@
 	</table>
 
 	<hr class="menu-border">
-	<div style="margin-bottom: 250px">
+	<div style="margin-bottom: 80px">
 
 		<table style="margin: auto" class="mb-3">
 			<tr>
@@ -55,7 +55,7 @@
 				<th style="background-color: #6666ff; width: 200px">ISBN</th>
 				<th style="background-color: #6666ff; width: 200px">Title</th>
 				<th style="background-color: #6666ff; width: 200px">価格</th>
-				<th style="background-color: #6666ff; width: 250px" colspan="2">変更/削除</th>
+				<th style="background-color: #6666ff; width: 300px" colspan="3">変更/削除/カートに入れる</th>
 			</tr>
 			<%
 				if (list != null) {
@@ -68,11 +68,14 @@
 				<a href="<%=request.getContextPath()%>/detail?isbn=<%= book.getIsbn() %>&cmd=detail"><%=book.getIsbn()%></a></td>
 				<td style="text-align: center; width: 200px"><%= book.getTitle() %></td>
 				<td style="text-align: center; width: 200px"><%= formattedPrice %></td>
-				<td style="text-align: center; width: 125px">
-				<a href="<%=request.getContextPath()%>/detail?isbn=<%=book.getIsbn()%>&cmd=update">変更</a>
+				<td style="text-align: center; width: 100px">
+					<a href="<%=request.getContextPath()%>/detail?isbn=<%=book.getIsbn()%>&cmd=update">変更</a>
 				</td>
-				<td style="text-align: left; width: 125px">
-				<a href="<%=request.getContextPath()%>/delete?isbn=<%=book.getIsbn()%>">削除</a>
+				<td style="text-align: center; width: 100px">
+					<a href="<%=request.getContextPath()%>/delete?isbn=<%=book.getIsbn()%>">削除</a>
+				</td>
+				<td style="text-align: center; width: 125px">
+					<a href="<%=request.getContextPath()%>/insertIntoCart?isbn=<%=book.getIsbn()%>">カートに入れる</a>
 				</td>
 			</tr>
 			<%

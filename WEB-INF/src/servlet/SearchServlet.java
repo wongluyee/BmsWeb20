@@ -31,17 +31,18 @@ public class SearchServlet extends HttpServlet {
 			// 取得した書籍情報を「list」という名前でリクエストスコープに登録
 			request.setAttribute("list", book_list);
 
-			// 検索結果を持ってlist.jspにフォワード
-			request.getRequestDispatcher("/view/list.jsp").forward(request, response);
-
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";
-			request.setAttribute("error", error);
-			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 		} catch (Exception e) {
 			error = "予期せぬエラーが発生しました。<br>" + e;
-			request.setAttribute("error", error);
-			request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+		} finally {
+			if (error.equals("")) {
+				// 検索結果を持ってlist.jspにフォワード
+				request.getRequestDispatcher("/view/list.jsp").forward(request, response);
+			} else {
+				request.setAttribute("error", error);
+				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+			}
 		}
 	}
 

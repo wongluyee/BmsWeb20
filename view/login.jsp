@@ -11,6 +11,7 @@
 	<div class="container">
 		<%@include file= "../common/header.jsp" %>
 		<div style="margin-bottom: 250px">
+			<h3>ログイン</h3>
 			<form action="<%=request.getContextPath()%>/login"  method="POST">
 				<label for="userid" class="form-label">ユーザー</label>
 				<input type="text" class="form-control mb-3" name="userid">

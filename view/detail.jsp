@@ -17,6 +17,8 @@
 <body>
 	<div class="container">
 		<%@include file= "../common/header.jsp" %>
+		<%@include file= "../common/userInfo.jsp" %>
+		<hr class="menu-border">
 
 		<table style="margin:auto; width:850px">
 			<tr>
@@ -32,14 +34,14 @@
 			</tr>
 		</table>
 		<hr class="menu-border">
-		<div style="margin-bottom: 230px" class="text-center">
+		<div style="margin-bottom: 150px" class="text-center">
+			<p class="fw-bold">ISBN: <%= book.getIsbn() %></p>
+			<p class="fw-bold">Title: <%= book.getTitle() %></p>
+			<p class="fw-bold">価格: <%= fm.moneyFormat(book.getPrice()) %></p>
 			<div class="mb-4">
 				<a class="btn btn-primary" href="<%=request.getContextPath()%>/detail?isbn=<%=book.getIsbn()%>&cmd=update">変更</a>
 				<a class="btn btn-primary" href="<%=request.getContextPath()%>/delete?isbn=<%=book.getIsbn()%>">削除</a>
 			</div>
-			<p class="fw-bold">ISBN: <%= book.getIsbn() %></p>
-			<p class="fw-bold">Title: <%= book.getTitle() %></p>
-			<p class="fw-bold">価格: <%= fm.moneyFormat(book.getPrice()) %></p>
 		</div>
 		<%@include file= "../common/footer.jsp" %>
 	</div>
