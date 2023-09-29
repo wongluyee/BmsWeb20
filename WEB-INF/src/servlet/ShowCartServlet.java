@@ -17,6 +17,7 @@ import dao.BookDAO;
 public class ShowCartServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String error = "";
+		String cmd = "";
 
 		try {
 			// delno（削除対象の配列要素番号）の入力パラメータを取得する
@@ -26,8 +27,19 @@ public class ShowCartServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			User user = (User)session.getAttribute("user");
 
+			if (user == null) {
+				error = "セッションが切れたため、再度ログインしてください。";
+				cmd = "logout";
+				return;
+			}
+
 			// セッションから"order_list"を取得する
 			ArrayList<Order> order_list = (ArrayList<Order>)session.getAttribute("order_list");
+
+			// カートの中身が空の場合
+			if (order_list == null) {
+				return;
+			}
 
 			// delnoが「null」でない場合order_listから該当の書籍情報を削除する
 			if (delno != null) {
@@ -49,14 +61,18 @@ public class ShowCartServlet extends HttpServlet {
 
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";
+			cmd = "logout";
 		} catch (Exception e) {
+			e.printStackTrace();
 			error = "予期せぬエラーが発生しました。<br>" + e;
+			cmd = "menu";
 		} finally {
 			if (error.equals("")) {
 				// フォワード
 				request.getRequestDispatcher("/view/showCart.jsp").forward(request,  response);
 			} else {
 				request.setAttribute("error", error);
+				request.setAttribute("cmd", cmd);
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			}
 		}

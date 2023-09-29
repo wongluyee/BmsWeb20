@@ -11,6 +11,7 @@ import dao.BookDAO;
 public class InsertServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String error = "";
+		String cmd = "";
 
 		try {
 			// BookDAOクラスのオブジェクトを生成
@@ -28,6 +29,7 @@ public class InsertServlet extends HttpServlet {
 			// ISBNの入力チェック
 			if (isbn.equals("")) {
 				error = "ISBN未入力のため、書籍登録処理は行えませんでした。";
+				cmd = "list";
 				return;
 			}
 
@@ -35,8 +37,8 @@ public class InsertServlet extends HttpServlet {
 			Book checkBook = objDao.selectByIsbn(isbn);
 			if (checkBook.getIsbn() != null) {
 				error = "入力ISBNは既に登録済みの為、書籍登録処理は行えませんでした。";
-				request.setAttribute("error", error);
-				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+				cmd = "list";
+				return;
 			}
 
 			String title = request.getParameter("title");
@@ -44,6 +46,7 @@ public class InsertServlet extends HttpServlet {
 			// Titleの入力チェック
 			if (title.equals("")) {
 				error = "Title未入力のため、書籍登録処理は行えませんでした。";
+				cmd = "list";
 				return;
 			}
 
@@ -52,6 +55,7 @@ public class InsertServlet extends HttpServlet {
 			// Priceの入力チェック
 			if (price.equals("")) {
 				error = "Price未入力のため、書籍登録処理は行えませんでした。";
+				cmd = "list";
 				return;
 			}
 
@@ -67,14 +71,17 @@ public class InsertServlet extends HttpServlet {
 
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";
+			cmd = "menu";
 		} catch (Exception e) {
 			error = "予期せぬエラーが発生しました。<br>" + e;
+			cmd = "menu";
 		} finally {
 			if (error.equals("")) {
 				// 一覧画面に戻る
 				request.getRequestDispatcher("/list").forward(request, response);
 			} else {
 				request.setAttribute("error", error);
+				request.setAttribute("cmd", cmd);
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			}
 		}

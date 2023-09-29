@@ -14,11 +14,18 @@ import dao.BookDAO;
 public class InsertIntoCartServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String error = "";
+		String cmd = "";
 
 		try {
 			// セッションから"user"のUserオブジェクトを取得する
 			HttpSession session = request.getSession();
 			User user = (User)session.getAttribute("user");
+
+			if (user == null) {
+				error = "セッションが切れたため、再度ログインしてください。";
+				cmd = "logout";
+				return;
+			}
 
 			// isbnのパラメータを取得する
 			String isbn = request.getParameter("isbn");
@@ -52,14 +59,17 @@ public class InsertIntoCartServlet extends HttpServlet {
 
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";
+			cmd = "logout";
 		} catch (Exception e) {
 			error = "予期せぬエラーが発生しました。<br>" + e;
+			cmd = "menu";
 		} finally {
 			if (error.equals("")) {
 				// フォワード
 				request.getRequestDispatcher("/view/insertIntoCart.jsp").forward(request,  response);
 			} else {
 				request.setAttribute("error", error);
+				request.setAttribute("cmd", cmd);
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			}
 		}

@@ -12,6 +12,7 @@ import dao.BookDAO;
 public class SearchServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String error = "";
+		String cmd = "";
 
 		try {
 			// BookDAOクラスのオブジェクトを生成
@@ -33,14 +34,17 @@ public class SearchServlet extends HttpServlet {
 
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";
+			cmd = "menu";
 		} catch (Exception e) {
 			error = "予期せぬエラーが発生しました。<br>" + e;
+			cmd = "menu";
 		} finally {
 			if (error.equals("")) {
 				// 検索結果を持ってlist.jspにフォワード
 				request.getRequestDispatcher("/view/list.jsp").forward(request, response);
 			} else {
 				request.setAttribute("error", error);
+				request.setAttribute("cmd", cmd);
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			}
 		}

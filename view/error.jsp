@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<% String error = (String) request.getAttribute("error"); %>
+<%
+	String error = (String) request.getAttribute("error");
+	String cmd = (String) request.getAttribute("cmd");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +17,13 @@
 			<% if (error != null) { %>
 				<p><%= error %></p>
 			<% } %>
-			<a href="<%=request.getContextPath() %>/list">[書籍一覧]</a>
-			<a href="<%=request.getContextPath() %>/view/login.jsp">[ログインページ]</a>
+			<% if (cmd.equals("menu")) { %>
+				<a href="<%=request.getContextPath() %>/view/menu.jsp">[メニュー]</a>
+			<% } else if (cmd.equals("list")) { %>
+				<a href="<%=request.getContextPath() %>/list">[書籍一覧]</a>
+			<% } else if (cmd.equals("logout")) { %>
+				<a href="<%=request.getContextPath() %>/logout">[ログインページ]</a>
+			<% } %>
 		</div>
 		<%@include file= "../common/footer.jsp" %>
 	</div>

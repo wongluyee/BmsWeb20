@@ -14,6 +14,7 @@ import dao.OrderedItemDAO;
 public class ShowOrderedItemServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String error = "";
+		String cmd = "";
 
 		try {
 			// OrderedItemDAOをインスタンス化し、関連メソッドを呼び出す
@@ -25,14 +26,17 @@ public class ShowOrderedItemServlet extends HttpServlet {
 
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";
+			cmd = "logout";
 		} catch (Exception e) {
 			error = "予期せぬエラーが発生しました。<br>" + e;
+			cmd = "menu";
 		} finally {
 			if (error.equals("")) {
 				// フォワード
 				request.getRequestDispatcher("/view/showOrderedItem.jsp").forward(request,  response);
 			} else {
 				request.setAttribute("error", error);
+				request.setAttribute("cmd", cmd);
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			}
 		}

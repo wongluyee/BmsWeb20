@@ -15,6 +15,7 @@ import util.FileIn;
 public class InsertIniDataServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String error = "";
+		String cmd = "";
 
 		try {
 			// BookDAOをインスタンス化し、selectAllメソッドを呼び出す
@@ -24,6 +25,7 @@ public class InsertIniDataServlet extends HttpServlet {
 			// listに１件でも書籍データがあればerror.jspにフォワードす
 			if (list.size() > 0) {
 				error = "データベースに書籍があるため、初期データを登録できませんでした。";
+				cmd = "menu";
 				return;
 			}
 
@@ -33,7 +35,8 @@ public class InsertIniDataServlet extends HttpServlet {
 
 			// csvファイルがオープンできない場合
 			if (fileIn.open(path) == false) {
-				error = "初期化ファイルのオープンに失敗しました。";
+				error = "初期化ファイルのオープンに失敗しました。または、初期データファイルがないため、登録は行えません。";
+				cmd = "menu";
 				return;
 			}
 
@@ -44,7 +47,8 @@ public class InsertIniDataServlet extends HttpServlet {
 
 				// 読み込んだ1行データのISBNやTITLE、またはPRICEのデータが1つでも不足している場合
 				if (bookArray.length != 3) {
-					error = "不正なデータが存在します。";
+					error = "初期データファイルが不備があるため、登録は行えません。";
+					cmd = "menu";
 					return;
 				}
 
@@ -70,14 +74,18 @@ public class InsertIniDataServlet extends HttpServlet {
 
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";
+			cmd = "logout";
 		} catch (Exception e) {
+			e.printStackTrace();
 			error = "予期せぬエラーが発生しました。<br>" + e;
+			cmd = "menu";
 		} finally {
 			if (error.equals("")) {
 				// フォワード
 				request.getRequestDispatcher("/view/insertIniData.jsp").forward(request, response);
 			} else {
 				request.setAttribute("error", error);
+				request.setAttribute("cmd", cmd);
 				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
 			}
 		}

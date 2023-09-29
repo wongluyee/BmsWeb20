@@ -42,7 +42,7 @@ public class SendMail {
 			mimeMessage.setRecipients(Message.RecipientType.TO, "wongluyee1015@hotmail.com");
 
 			// メールのタイトルを指定
-			mimeMessage.setSubject("ご購入ありがとうございます。", "iso-2022-jp");
+			mimeMessage.setSubject("Hello World", "iso-2022-jp");
 
 			// メールの内容を指定 *****Need change
 			mimeMessage.setText("HelloWorld", "iso-2022-jp");
