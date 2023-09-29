@@ -10,7 +10,7 @@ import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.InternetAddress;
 
-public class SendMailTest {
+public class SendMail {
 
 	public static void main(String[] args) {
 		try {
@@ -38,14 +38,14 @@ public class SendMailTest {
 			// 送信元メールアドレスと送信者名を指定
 			mimeMessage.setFrom(new InternetAddress("test.sender@kanda-it-school-system.com", "神田IT School", "iso-2022-jp"));
 
-			// 送信先メールアドレスを指定（ご自分のメールアドレスに変更）
+			// 送信先メールアドレスを指定 *****Change to user's email
 			mimeMessage.setRecipients(Message.RecipientType.TO, "test.receiver@kanda-it-school-system.com");
 
 			// メールのタイトルを指定
-			mimeMessage.setSubject("Hello World", "iso-2022-jp");
+			mimeMessage.setSubject("ご購入ありがとうございます。", "iso-2022-jp");
 
-			// メールの内容を指定
-			mimeMessage.setText("Hello World\nOk!", "iso-2022-jp");
+			// メールの内容を指定 *****Need change
+			mimeMessage.setText("Test", "iso-2022-jp");
 
 			// メールの形式を指定
 			mimeMessage.setHeader("Content-Type", "text/plain; charset=iso-2022-jp");

@@ -38,6 +38,8 @@ public class LoginServlet extends HttpServlet {
 				Cookie passwordCookie = new Cookie("password", user.getPassword());
 				userCookie.setMaxAge(172800);
 				passwordCookie.setMaxAge(172800);
+				response.addCookie(userCookie);
+				response.addCookie(passwordCookie);
 				request.getRequestDispatcher("/view/menu.jsp").forward(request, response);
 			} else {
 				request.setAttribute("message", "入力内容が間違っています。");

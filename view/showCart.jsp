@@ -7,10 +7,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="style.css" type="text/css" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<title>書籍管理システム</title>
+	<%@include file= "../common/head.jsp" %>
+	<title>カート</title>
 </head>
 <body>
 	<div class="container text-center">
@@ -26,7 +24,6 @@
 					<td style="width:80px">&nbsp;</td>
 					<td style="width:80px">&nbsp;</td>
 				</tr>
-			</tr>
 		</table>
 		<hr class="menu-border">
 
@@ -82,7 +79,6 @@
 					<td style="background-color: #6666ff; text-align: center; width: 200px">合計：</td>
 					<td style="text-align: center; width: 200px"><%= fm.moneyFormat(total) %></td>
 				</tr>
-
 			</table>
 
 			<table style="margin:auto;" class="mt-3">

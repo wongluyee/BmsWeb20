@@ -8,9 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="style.css" type="text/css" />
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<%@include file= "../common/head.jsp" %>
 	<title>書籍一覧</title>
 </head>
 <body>
@@ -20,18 +18,16 @@
 	<hr class="menu-border">
 	<table style="margin:auto; width:850px">
 		<tr>
-			<tr>
-				<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
-				<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/insert.jsp">書籍登録</a>]</td>
-				<td style="text-align:center; width:508px; font-size:24px;">書籍一覧</td>
-				<td style="width:80px">&nbsp;</td>
-				<td style="width:80px">&nbsp;</td>
-			</tr>
+			<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
+			<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/insert.jsp">書籍登録</a>]</td>
+			<td style="text-align:center; width:508px; font-size:24px;">書籍一覧</td>
+			<td style="width:80px">&nbsp;</td>
+			<td style="width:80px">&nbsp;</td>
+		</tr>
 	</table>
 
 	<hr class="menu-border">
 	<div style="margin-bottom: 80px">
-
 		<table style="margin: auto" class="mb-3">
 			<tr>
 				<td>
