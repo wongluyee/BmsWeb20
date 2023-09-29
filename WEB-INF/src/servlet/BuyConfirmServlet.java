@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.mail.Message;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -46,6 +47,7 @@ public class BuyConfirmServlet extends HttpServlet {
 
 			// "order_list"の注文情報内容をメール送信する
 			SendMail sendMail = new SendMail();
+//			sendMail.setRecipients(Message.RecipientType.TO, user.getEmail());
 
 			// セッションの"order_list"情報をクリアする
 			session.setAttribute("order_list", null);

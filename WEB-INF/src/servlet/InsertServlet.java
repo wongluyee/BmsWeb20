@@ -28,8 +28,7 @@ public class InsertServlet extends HttpServlet {
 			// ISBNの入力チェック
 			if (isbn.equals("")) {
 				error = "ISBN未入力のため、書籍登録処理は行えませんでした。";
-				request.setAttribute("error", error);
-				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+				return;
 			}
 
 			// ISBN重複のチェック
@@ -45,8 +44,7 @@ public class InsertServlet extends HttpServlet {
 			// Titleの入力チェック
 			if (title.equals("")) {
 				error = "Title未入力のため、書籍登録処理は行えませんでした。";
-				request.setAttribute("error", error);
-				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+				return;
 			}
 
 			String price = request.getParameter("price");
@@ -54,8 +52,7 @@ public class InsertServlet extends HttpServlet {
 			// Priceの入力チェック
 			if (price.equals("")) {
 				error = "Price未入力のため、書籍登録処理は行えませんでした。";
-				request.setAttribute("error", error);
-				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+				return;
 			}
 
 			int intPrice = Integer.parseInt(price);

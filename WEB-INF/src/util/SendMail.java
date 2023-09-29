@@ -39,13 +39,13 @@ public class SendMail {
 			mimeMessage.setFrom(new InternetAddress("test.sender@kanda-it-school-system.com", "神田IT School", "iso-2022-jp"));
 
 			// 送信先メールアドレスを指定 *****Change to user's email
-			mimeMessage.setRecipients(Message.RecipientType.TO, "test.receiver@kanda-it-school-system.com");
+			mimeMessage.setRecipients(Message.RecipientType.TO, "wongluyee1015@hotmail.com");
 
 			// メールのタイトルを指定
 			mimeMessage.setSubject("ご購入ありがとうございます。", "iso-2022-jp");
 
 			// メールの内容を指定 *****Need change
-			mimeMessage.setText("Test", "iso-2022-jp");
+			mimeMessage.setText("HelloWorld", "iso-2022-jp");
 
 			// メールの形式を指定
 			mimeMessage.setHeader("Content-Type", "text/plain; charset=iso-2022-jp");

@@ -24,8 +24,7 @@ public class DeleteServlet extends HttpServlet {
 			// 書籍存在するかのチェック
 			if (isbn.equals("")) {
 				error = "削除対象の書籍が存在しない為、書籍削除処理は行えませんでした。";
-				request.setAttribute("error", error);
-				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+				return;
 			}
 
 			// 書籍情報を削除

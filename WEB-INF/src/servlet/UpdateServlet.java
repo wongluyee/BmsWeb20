@@ -30,16 +30,14 @@ public class UpdateServlet extends HttpServlet {
 			// Priceの入力チェック
 			if (price.equals("")) {
 				error = "Price未入力のため、書籍登録処理は行えませんでした。";
-				request.setAttribute("error", error);
-				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+				return;
 			}
 
 			int intPrice = Integer.parseInt(price);
 
 			if (intPrice <= 0) {
 				error = "価格が0以下の為、書籍登録処理は行えませんでした。";
-				request.setAttribute("error", error);
-				request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+				return;
 			}
 
 			// Bookオブジェクトに格納
