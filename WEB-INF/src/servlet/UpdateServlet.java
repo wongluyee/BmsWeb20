@@ -62,6 +62,7 @@ public class UpdateServlet extends HttpServlet {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";
 			cmd = "menu";
 		} catch (Exception e) {
+			e.printStackTrace();
 			error = "予期せぬエラーが発生しました。<br>" + e;
 			cmd = "menu";
 		} finally {
