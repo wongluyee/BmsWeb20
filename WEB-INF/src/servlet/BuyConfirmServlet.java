@@ -3,7 +3,6 @@ package servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.mail.internet.InternetAddress;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -60,9 +59,20 @@ public class BuyConfirmServlet extends HttpServlet {
 
 			// "order_list"の注文情報内容をメール送信する
 			SendMail sendMail = new SendMail();
-//			sendMail.setFromInfo(new InternetAddress("test.sender@kanda-it-school-system.com", "神田IT School", "iso-2022-jp"));
-//			sendMail.setRecipients(user.getEmail());
-//			sendMail.setSubject("本のご購入ありがとうございます。");
+			String userEmail = user.getEmail();
+			String subject = "本のご購入ありがとうございます。";
+
+			// メッセージ
+			String message = user.getUserid() + "様\n\n本のご購入ありがとうございます。以下内容で注文を受け付けましたので、ご連絡いたします。\n\n";
+
+			int sum = 0;
+			for (Book book : list) {
+				message = message.concat(book.getIsbn() + " " + book.getTitle() + " " + book.getPrice() + "円\n");
+				sum += book.getPrice();
+			}
+			message = message.concat("合計 " + sum + "\n\nまたのご利用よろしくお願いします。\n");
+
+			sendMail.sendEmail(userEmail, subject, message);
 
 			// セッションの"order_list"情報をクリアする
 			session.setAttribute("order_list", null);

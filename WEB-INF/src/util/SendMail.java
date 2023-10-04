@@ -1,18 +1,20 @@
 package util;
 
 import java.util.Properties;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.InternetAddress;
 
 public class SendMail {
 
-	public static void main(String[] args) {
+	public void sendEmail (String toEmail, String subject, String message) throws MessagingException {
 		try {
 			Properties props = System.getProperties();
 
@@ -38,14 +40,14 @@ public class SendMail {
 			// 送信元メールアドレスと送信者名を指定
 			mimeMessage.setFrom(new InternetAddress("test.sender@kanda-it-school-system.com", "神田IT School", "iso-2022-jp"));
 
-			// 送信先メールアドレスを指定 *****Change to user's email
-			mimeMessage.setRecipients(Message.RecipientType.TO, "wongluyee1015@hotmail.com");
+			// 送信先メールアドレスを指定
+			mimeMessage.setRecipients(Message.RecipientType.TO, toEmail);
 
 			// メールのタイトルを指定
-			mimeMessage.setSubject("Hello World", "iso-2022-jp");
+			mimeMessage.setSubject(subject, "iso-2022-jp");
 
-			// メールの内容を指定 *****Need change
-			mimeMessage.setText("HelloWorld", "iso-2022-jp");
+			// メールの内容を指定
+			mimeMessage.setText(message, "iso-2022-jp");
 
 			// メールの形式を指定
 			mimeMessage.setHeader("Content-Type", "text/plain; charset=iso-2022-jp");
