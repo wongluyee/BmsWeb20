@@ -77,11 +77,14 @@ public class UserDAO {
 			smt = con.createStatement();
 			ResultSet rs = smt.executeQuery(sql);
 
-			while (rs.next()) {
+			if (rs.next()) {
 				user.setUserid(rs.getString("user"));
 				user.setPassword(rs.getString("password"));
 				user.setEmail(rs.getString("email"));
 				user.setAuthority(rs.getString("authority"));
+				return user;
+			} else {
+				return null;
 			}
 		} catch (Exception e) {
 			throw new IllegalStateException(e);
@@ -99,7 +102,6 @@ public class UserDAO {
 				}
 			}
 		}
-		return user;
 	}
 
 }

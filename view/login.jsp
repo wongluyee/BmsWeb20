@@ -6,7 +6,7 @@
 	// クッキーをゲット
 	Cookie[] userCookie = request.getCookies();
 	// クッキーあるか判定
-	if (userCookie != null) {
+	if (message == null && userCookie != null) {
 		for (int i = 0; i < userCookie.length; i++) {
 			if (userCookie[i].getName().equals("user")) {
 				user = userCookie[i].getValue();
