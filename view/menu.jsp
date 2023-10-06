@@ -17,11 +17,13 @@
 		<div class="d-flex align-items-center flex-column options">
 			<a class="btn btn-primary" href="<%=request.getContextPath()%>/list" style="width:320px;">書籍一覧 <i class="fa-solid fa-book"></i></a><br>
 
+			<!-- 一般ユーザーの場合 -->
 			<% if (user.getAuthority().equals("1")) { %>
 				<a class="btn btn-primary" href="<%=request.getContextPath()%>/showCart" style="width:320px;">カート状況確認 <i class="fa-solid fa-cart-shopping"></i></a><br>
 				<a class="btn btn-primary" href="<%=request.getContextPath()%>/showHistoryOrderedItem" style="width:320px;">購入履歴 <i class="fa-solid fa-cash-register"></i></a><br>
 			<% } %>
 
+			<!-- 管理者の場合 -->
 			<% if (user.getAuthority().equals("2")) { %>
 				<a class="btn btn-primary" href="<%=request.getContextPath()%>/view/insert.jsp" style="width:320px;">書籍登録 <i class="fa-solid fa-plus"></i></a><br>
 				<a class="btn btn-primary" href="<%=request.getContextPath()%>/insertIniData" style="width:320px;">初期データ登録（データがない場合のみ）<i class="fa-solid fa-database"></i></a><br>

@@ -9,17 +9,21 @@
 	<div class="container">
 	<%@include file= "../common/header.jsp" %>
 	<%@include file= "../common/userInfo.jsp" %>
+	<% if(!user.getAuthority().equals("2")){
+		request.setAttribute("error","権限がないため、閲覧できませんでした。");
+		request.setAttribute("cmd","menu");
+		request.getRequestDispatcher("/view/error.jsp").forward(request, response);
+		return;
+	} %>
 	<hr class="menu-border">
 
 	<table style="margin:auto; width:850px">
 		<tr>
-			<tr>
-				<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
-				<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/list">書籍一覧</a>]</td>
-				<td style="text-align:center; width:508px; font-size:24px;">書籍登録</td>
-				<td style="width:80px">&nbsp;</td>
-				<td style="width:80px">&nbsp;</td>
-			</tr>
+			<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
+			<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/list">書籍一覧</a>]</td>
+			<td style="text-align:center; width:508px; font-size:24px;">書籍登録</td>
+			<td style="width:80px">&nbsp;</td>
+			<td style="width:80px">&nbsp;</td>
 		</tr>
 	</table>
 

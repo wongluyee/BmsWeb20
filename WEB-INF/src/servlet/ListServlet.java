@@ -18,11 +18,8 @@ public class ListServlet extends HttpServlet {
 			// BookDAOクラスのオブジェクトを生成
 			BookDAO objDao = new BookDAO();
 
-			// 検索した書籍情報を格納する配列
-			ArrayList<Book> list = new ArrayList<Book>();
-
-			// 全検索メソッドを呼び出し
-			list = objDao.selectAll();
+			// 検索した書籍情報を格納する配列を作成、全検索メソッドを呼び出し
+			ArrayList<Book> list = objDao.selectAll();
 
 			// 検索結果を持ってlist.jspにフォワード
 			request.setAttribute("list", list);

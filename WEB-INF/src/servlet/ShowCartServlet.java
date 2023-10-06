@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.Book;
 import bean.Order;
+import bean.Sales;
 import bean.User;
 import dao.BookDAO;
 
@@ -46,18 +47,24 @@ public class ShowCartServlet extends HttpServlet {
 				order_list.remove(Integer.parseInt(delno));
 			}
 
+			// Salesクラス型のArrayList配列を宣言する。
+			ArrayList<Sales> book_list = new ArrayList<Sales>();
+
 			// BookDAOをインスタンス化し、selectByIsbnメソッドをorder_list(カートデータ)分だけ呼び出す
 			BookDAO bookDao = new BookDAO();
-			ArrayList<Book>list = new ArrayList<Book>();
 			for (Order order : order_list) {
 				Book book = bookDao.selectByIsbn(order.getIsbn());
-
+				Sales bookInfo = new Sales();
+				bookInfo.setIsbn(book.getIsbn());
+				bookInfo.setTitle(book.getTitle());
+				bookInfo.setPrice(book.getPrice());
+				bookInfo.setQuantity(order.getQuantity());
 				// 取得した各BookをListに追加する
-				list.add(book);
+				book_list.add(bookInfo);
 			}
 
 			// リクエストスコープに"book_list"という名前で格納する
-			request.setAttribute("book_list", list);
+			request.setAttribute("book_list", book_list);
 
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";

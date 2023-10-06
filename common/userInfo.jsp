@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="bean.User"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="bean.User"%>
 <%
 	//セッションからユーザー情報を取得
 	User user = (User)session.getAttribute("user");

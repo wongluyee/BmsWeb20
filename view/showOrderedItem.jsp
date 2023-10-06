@@ -24,8 +24,8 @@
 		<hr class="menu-border">
 		<table style="margin: auto" class="text-center">
 			<tr>
-				<th style="background-color: #6666ff; width: 200px">ユーザー</th>
-				<th style="background-color: #6666ff; width: 200px">Title</th>
+				<th style="background-color: #6666ff; width: 200px; border-right: solid white"">ユーザー</th>
+				<th style="background-color: #6666ff; width: 200px; border-right: solid white"">Title</th>
 				<th style="background-color: #6666ff; width: 200px">注文日</th>
 			</tr>
 			<%

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList,bean.Book,util.MyFormat"%>
+<%@ page import="java.util.ArrayList,bean.Sales,util.MyFormat"%>
 <%
-	ArrayList<Book> list = (ArrayList<Book>) request.getAttribute("book_list");
+	ArrayList<Sales> list = (ArrayList<Sales>) request.getAttribute("book_list");
 	MyFormat fm = new MyFormat();
 %>
 <!DOCTYPE html>
@@ -30,9 +30,10 @@
 		<div style="margin-bottom: 80px">
 			<table style="margin: auto">
 			<tr>
-				<th style="background-color: #6666ff; width: 200px">ISBN</th>
-				<th style="background-color: #6666ff; width: 200px">Title</th>
-				<th style="background-color: #6666ff; width: 200px">価格</th>
+				<th style="background-color: #6666ff; width: 200px; border-right: solid white">ISBN</th>
+				<th style="background-color: #6666ff; width: 200px; border-right: solid white">Title</th>
+				<th style="background-color: #6666ff; width: 200px; border-right: solid white">価格</th>
+				<th style="background-color: #6666ff; width: 200px; border-right: solid white">購入数</th>
 				<th style="background-color: #6666ff; width: 200px">削除</th>
 			</tr>
 
@@ -41,8 +42,8 @@
 
 				if (list != null) {
 					for (int i = 0; i < list.size(); i++) {
-						Book book = (Book) list.get(i);
-						total += book.getPrice();
+						Sales book = (Sales) list.get(i);
+						total += (book.getPrice() * book.getQuantity());
 						String formattedPrice = fm.moneyFormat(book.getPrice());
 			%>
 
@@ -52,6 +53,7 @@
 				</td>
 				<td style="text-align: center; width: 200px"><%= book.getTitle() %></td>
 				<td style="text-align: center; width: 200px"><%= formattedPrice %></td>
+				<td style="text-align: center; width: 200px"><%= book.getQuantity() %></td>
 				<td style="text-align: center; width: 200px">
 					<a href="<%=request.getContextPath()%>/showCart?delno=<%=i%>">削除</a>
 				</td>
@@ -76,13 +78,15 @@
 				<tr>
 					<td style="text-align: center; width: 200px">&nbsp;</td>
 					<td style="text-align: center; width: 200px">&nbsp;</td>
-					<td style="background-color: #6666ff; text-align: center; width: 200px">合計：</td>
-					<td style="text-align: center; width: 200px"><%= fm.moneyFormat(total) %></td>
+					<td style="text-align: center; width: 200px">&nbsp;</td>
+					<td style="background-color: #6666ff; text-align: center; width: 200px; border-right: solid white; border-left: solid white">合計：</td>
+					<td style="text-align: center; width: 200px; "><%= fm.moneyFormat(total) %></td>
 				</tr>
 			</table>
 
 			<table style="margin:auto;" class="mt-3">
 				<tr>
+					<td style="text-align: center; width: 200px">&nbsp;</td>
 					<td style="text-align: center; width: 200px">&nbsp;</td>
 					<td style="text-align: center; width: 200px">&nbsp;</td>
 					<td style="text-align: center; width: 200px">&nbsp;</td>

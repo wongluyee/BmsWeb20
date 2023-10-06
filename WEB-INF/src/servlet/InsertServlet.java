@@ -15,7 +15,7 @@ public class InsertServlet extends HttpServlet {
 
 		try {
 			// BookDAOクラスのオブジェクトを生成
-			BookDAO objDao = new BookDAO();
+			BookDAO bookDao = new BookDAO();
 
 			// 登録する書籍情報を格納するBookオブジェクトを生成
 			Book book = new Book();
@@ -25,6 +25,8 @@ public class InsertServlet extends HttpServlet {
 
 			// 画面からの入力情報を受け取り
 			String isbn = request.getParameter("isbn");
+			String title = request.getParameter("title");
+			String price = request.getParameter("price");
 
 			// ISBNの入力チェック
 			if (isbn.equals("")) {
@@ -34,14 +36,12 @@ public class InsertServlet extends HttpServlet {
 			}
 
 			// ISBN重複のチェック
-			Book checkBook = objDao.selectByIsbn(isbn);
+			Book checkBook = bookDao.selectByIsbn(isbn);
 			if (checkBook.getIsbn() != null) {
 				error = "入力ISBNは既に登録済みの為、書籍登録処理は行えませんでした。";
 				cmd = "list";
 				return;
 			}
-
-			String title = request.getParameter("title");
 
 			// Titleの入力チェック
 			if (title.equals("")) {
@@ -49,8 +49,6 @@ public class InsertServlet extends HttpServlet {
 				cmd = "list";
 				return;
 			}
-
-			String price = request.getParameter("price");
 
 			// Priceの入力チェック
 			if (price.equals("")) {
@@ -67,7 +65,7 @@ public class InsertServlet extends HttpServlet {
 			book.setPrice(intPrice);
 
 			// Bookオブジェクトに格納された書籍データをデータベースに登録
-			objDao.insert(book);
+			bookDao.insert(book);
 
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";

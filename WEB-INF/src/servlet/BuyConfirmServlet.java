@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.Book;
 import bean.Order;
+import bean.Sales;
 import bean.User;
 import dao.BookDAO;
 import dao.OrderDAO;
@@ -46,12 +47,17 @@ public class BuyConfirmServlet extends HttpServlet {
 			OrderDAO orderDao = new OrderDAO();
 
 			// order_listの(カート追加データ分）だけ呼び出す
-			ArrayList<Book>list = new ArrayList<Book>();
+			ArrayList<Sales>list = new ArrayList<Sales>();
 			for (Order order : order_list) {
 				Book book = bookDao.selectByIsbn(order.getIsbn());
+				Sales bookInfo = new Sales();
+				bookInfo.setIsbn(book.getIsbn());
+				bookInfo.setTitle(book.getTitle());
+				bookInfo.setPrice(book.getPrice());
+				bookInfo.setQuantity(order.getQuantity());
 				orderDao.insert(order);
 				// 取得した各BookをListに追加する
-				list.add(book);
+				list.add(bookInfo);
 			}
 
 			// リクエストスコープに"book_list"という名前で格納する
@@ -66,9 +72,9 @@ public class BuyConfirmServlet extends HttpServlet {
 			String message = user.getUserid() + "様\n\n本のご購入ありがとうございます。以下内容で注文を受け付けましたので、ご連絡いたします。\n\n";
 
 			int sum = 0;
-			for (Book book : list) {
-				message = message.concat(book.getIsbn() + " " + book.getTitle() + " " + book.getPrice() + "円\n");
-				sum += book.getPrice();
+			for (Sales book : list) {
+				message = message.concat(book.getIsbn() + " " + book.getTitle() + " " + book.getPrice() + "円 " + book.getQuantity() + "冊\n");
+				sum += (book.getPrice() * book.getQuantity());
 			}
 			message = message.concat("合計 " + sum + "\n\nまたのご利用よろしくお願いします。\n");
 

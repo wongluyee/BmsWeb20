@@ -27,8 +27,9 @@ public class InsertIntoCartServlet extends HttpServlet {
 				return;
 			}
 
-			// isbnのパラメータを取得する
+			// isbnと数量のパラメータを取得する
 			String isbn = request.getParameter("isbn");
+			int quantity = Integer.parseInt(request.getParameter("quantity"));
 
 			// BookDAOをインスタンス化し、selectByIsbnメソッドを呼び出す
 			BookDAO bookDao = new BookDAO();
@@ -37,13 +38,15 @@ public class InsertIntoCartServlet extends HttpServlet {
 			// Bookオブジェクトをリクエストスコープに"Book"という名前で格納する
 			request.setAttribute("book",book);
 
+			request.setAttribute("quantity", quantity);
+
 			// Orderのインスタンスを生成
 			Order order = new Order();
 
-			// isbn、userid(ログイン者)、数量(1固定)を設定する
+			// isbn、userid(ログイン者)、数量を設定する
 			order.setIsbn(isbn);
 			order.setUserid(user.getUserid());
-			order.setQuantity(1);
+			order.setQuantity(quantity);
 
 			// セッションから"order_list"の配列を取得する
 			ArrayList<Order> order_list = (ArrayList<Order>)session.getAttribute("order_list");

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList,bean.Book,util.MyFormat"%>
+	pageEncoding="UTF-8" import="java.util.ArrayList,bean.Book,util.MyFormat"%>
 <%
 	ArrayList<Book> list = (ArrayList<Book>) request.getAttribute("list");
 	MyFormat fm = new MyFormat();
@@ -19,7 +18,12 @@
 	<table style="margin:auto; width:850px">
 		<tr>
 			<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
-			<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/insert.jsp">書籍登録</a>]</td>
+			<% if (user.getAuthority().equals("1")) { %>
+				<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath()%>/showCart">カート状況</a>]</td>
+			<% } %>
+			<% if (user.getAuthority().equals("2")) { %>
+				<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/insert.jsp">書籍登録</a>]</td>
+			<% } %>
 			<td style="text-align:center; width:508px; font-size:24px;">書籍一覧</td>
 			<td style="width:80px">&nbsp;</td>
 			<td style="width:80px">&nbsp;</td>
@@ -48,10 +52,16 @@
 
 		<table style="margin: auto">
 			<tr>
-				<th style="background-color: #6666ff; width: 200px">ISBN</th>
-				<th style="background-color: #6666ff; width: 200px">Title</th>
-				<th style="background-color: #6666ff; width: 200px">価格</th>
-				<th style="background-color: #6666ff; width: 300px" colspan="3">変更/削除/カートに入れる</th>
+				<th style="background-color: #6666ff; width: 200px; border-right: solid white"">ISBN</th>
+				<th style="background-color: #6666ff; width: 200px; border-right: solid white">Title</th>
+				<th style="background-color: #6666ff; width: 200px; border-right: solid white">価格</th>
+				<% if (user.getAuthority().equals("1")) { %>
+					<th style="background-color: #6666ff; width: 250px" colspan="2">購入数</th>
+				<% } %>
+
+				<% if (user.getAuthority().equals("2")) { %>
+					<th style="background-color: #6666ff; width: 200px" colspan="2">変更/削除</th>
+				<% } %>
 			</tr>
 			<%
 				if (list != null) {
@@ -64,15 +74,26 @@
 				<a href="<%=request.getContextPath()%>/detail?isbn=<%= book.getIsbn() %>&cmd=detail"><%=book.getIsbn()%></a></td>
 				<td style="text-align: center; width: 200px"><%= book.getTitle() %></td>
 				<td style="text-align: center; width: 200px"><%= formattedPrice %></td>
-				<td style="text-align: center; width: 100px">
-					<a href="<%=request.getContextPath()%>/detail?isbn=<%=book.getIsbn()%>&cmd=update">変更</a>
-				</td>
-				<td style="text-align: center; width: 100px">
-					<a href="<%=request.getContextPath()%>/delete?isbn=<%=book.getIsbn()%>">削除</a>
-				</td>
-				<td style="text-align: center; width: 125px">
-					<a href="<%=request.getContextPath()%>/insertIntoCart?isbn=<%=book.getIsbn()%>">カートに入れる</a>
-				</td>
+
+				<% if (user.getAuthority().equals("1")) { %>
+					<td style="text-align: center; width: 125px">
+						<form action="<%=request.getContextPath()%>/insertIntoCart"  method="GET">
+							<input type="hidden" name="isbn" value="<%=book.getIsbn()%>">
+							<label for="quantity">数量：</label>
+							<input type="number" name="quantity" style="width:56px">
+							<input type="submit" value="カートに入れる">
+						</form>
+					</td>
+				<% } %>
+
+				<% if (user.getAuthority().equals("2")) { %>
+					<td style="text-align: center; width: 100px">
+						<a href="<%=request.getContextPath()%>/detail?isbn=<%=book.getIsbn()%>&cmd=update">変更</a>
+					</td>
+					<td style="text-align: center; width: 100px">
+						<a href="<%=request.getContextPath()%>/delete?isbn=<%=book.getIsbn()%>">削除</a>
+					</td>
+				<% } %>
 			</tr>
 			<%
 					}
