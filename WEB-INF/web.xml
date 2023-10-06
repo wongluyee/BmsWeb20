@@ -117,6 +117,78 @@
 	</servlet-mapping>
 
 	<session-config>
-		<session-timeout>60</session-timeout>
+		<session-timeout>360</session-timeout>
 	</session-config>
+
+	<servlet>
+		<servlet-name>showHistoryOrderedItemMapping</servlet-name>
+		<servlet-class>servlet.ShowHistoryOrderedItemServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showHistoryOrderedItemMapping</servlet-name>
+		<url-pattern>/showHistoryOrderedItem</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>changePasswordMapping</servlet-name>
+		<servlet-class>servlet.ChangePasswordServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>changePasswordMapping</servlet-name>
+		<url-pattern>/changePassword</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>showSalesByMonthMapping</servlet-name>
+		<servlet-class>servlet.ShowSalesByMonthServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>showSalesByMonthMapping</servlet-name>
+		<url-pattern>/showSalesByMonth</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>listUserMapping</servlet-name>
+		<servlet-class>servlet.ListUserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>listUserMapping</servlet-name>
+		<url-pattern>/listUser</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>insertUserMapping</servlet-name>
+		<servlet-class>servlet.InsertUserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>insertUserMapping</servlet-name>
+		<url-pattern>/insertUser</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>deleteUserMapping</servlet-name>
+		<servlet-class>servlet.DeleteUserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>deleteUserMapping</servlet-name>
+		<url-pattern>/deleteUser</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>updateUserMapping</servlet-name>
+		<servlet-class>servlet.UpdateUserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>updateUserMapping</servlet-name>
+		<url-pattern>/updateUser</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>detailUserMapping</servlet-name>
+		<servlet-class>servlet.DetailUserServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>detailUserMapping</servlet-name>
+		<url-pattern>/detailUser</url-pattern>
+	</servlet-mapping>
 </web-app>
