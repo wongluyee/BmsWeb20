@@ -23,6 +23,7 @@
 			<tr>
 				<th style="background-color: #6666ff; width: 200px; border-right: solid white">ユーザー</th>
 				<th style="background-color: #6666ff; width: 200px; border-right: solid white">Title</th>
+				<th style="background-color: #6666ff; width: 200px; border-right: solid white">数量</th>
 				<th style="background-color: #6666ff; width: 200px">注文日</th>
 			</tr>
 			<%
@@ -33,6 +34,7 @@
 					<tr>
 						<td style="text-align: center; width: 200px"><%= orderedItem.getUserid() %></td>
 						<td style="text-align: center; width: 200px"><%= orderedItem.getTitle() %></td>
+						<td style="text-align: center; width: 200px"><%= orderedItem.getQuantity() %></td>
 						<td style="text-align: center; width: 200px"><%= orderedItem.getDate() %></td>
 					</tr>
 				<% } %>
