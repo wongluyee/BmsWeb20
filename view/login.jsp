@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
 	String message = (String) request.getAttribute("message");
 	String user = "";
@@ -32,7 +32,7 @@
 			<% if (message != null) { %>
 				<h5><%= message %></h5>
 			<% } %>
-			<form action="<%=request.getContextPath()%>/login"  method="POST">
+			<form action="<%= request.getContextPath( )%>/login"  method="POST">
 				<label for="userid" class="form-label">ユーザー</label>
 				<input type="text" class="form-control mb-3" name="userid" value=<%= user %>>
 				<label for="password" class="form-label">パスワード</label>

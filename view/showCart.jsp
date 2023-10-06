@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList,bean.Sales,util.MyFormat"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.ArrayList,bean.Sales,util.MyFormat"%>
 <%
 	ArrayList<Sales> list = (ArrayList<Sales>) request.getAttribute("book_list");
 	MyFormat fm = new MyFormat();
@@ -18,9 +17,9 @@
 		<table style="margin:auto; width:850px">
 			<tr>
 				<tr>
-					<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
-					<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/list">書籍一覧</a>]</td>
-					<td style="text-align:center; font-size:24px;">カート内容</td>
+					<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
+					<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/list">書籍一覧</a>]</td>
+					<td style="text-align:center; font-size:24px;"><h3>カート内容</h3></td>
 					<td style="width:80px">&nbsp;</td>
 					<td style="width:80px">&nbsp;</td>
 				</tr>
@@ -49,13 +48,13 @@
 
 			<tr>
 				<td style="text-align: center; width: 200px">
-					<a href="<%=request.getContextPath()%>/detail?isbn=<%= book.getIsbn() %>&cmd=detail"><%=book.getIsbn()%></a>
+					<a href="<%= request.getContextPath() %>/detail?isbn=<%= book.getIsbn() %>&cmd=detail"><%= book.getIsbn() %></a>
 				</td>
 				<td style="text-align: center; width: 200px"><%= book.getTitle() %></td>
 				<td style="text-align: center; width: 200px"><%= formattedPrice %></td>
 				<td style="text-align: center; width: 200px"><%= book.getQuantity() %></td>
 				<td style="text-align: center; width: 200px">
-					<a href="<%=request.getContextPath()%>/showCart?delno=<%=i%>">削除</a>
+					<a href="<%= request.getContextPath() %>/showCart?delno=<%= i %>">削除</a>
 				</td>
 			</tr>
 
@@ -90,7 +89,7 @@
 					<td style="text-align: center; width: 200px">&nbsp;</td>
 					<td style="text-align: center; width: 200px">&nbsp;</td>
 					<td style="text-align: center; width: 200px">&nbsp;</td>
-					<td><form action="<%=request.getContextPath()%>/buyConfirm"  method="GET">
+					<td><form action="<%= request.getContextPath() %>/buyConfirm"  method="GET">
 						<input class="text-end" type="submit" value="購入">
 					</form></td>
 				</tr>

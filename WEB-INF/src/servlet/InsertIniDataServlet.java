@@ -7,8 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.Book;
+import bean.User;
 import dao.BookDAO;
 import util.FileIn;
 
@@ -18,6 +20,17 @@ public class InsertIniDataServlet extends HttpServlet {
 		String cmd = "";
 
 		try {
+			// ユーザーの権限確認
+			// セッションから"user"のUserオブジェクトを取得する
+			HttpSession session = request.getSession();
+			User user = (User)session.getAttribute("user");
+
+			if (user.getAuthority().equals("1")) {
+				error = "権限がないため、閲覧できませんでした。";
+				cmd = "menu";
+				return;
+			}
+
 			// BookDAOをインスタンス化し、selectAllメソッドを呼び出す
 			BookDAO bookDao = new BookDAO();
 			ArrayList<Book> list = bookDao.selectAll();

@@ -18,11 +18,11 @@
 				<p><%= error %></p>
 			<% } %>
 			<% if (cmd.equals("menu")) { %>
-				<a href="<%=request.getContextPath() %>/view/menu.jsp">[メニュー]</a>
+				<a href="<%= request.getContextPath() %>/view/menu.jsp">[メニュー]</a>
 			<% } else if (cmd.equals("list")) { %>
-				<a href="<%=request.getContextPath() %>/list">[書籍一覧]</a>
+				<a href="<%= request.getContextPath() %>/list">[書籍一覧]</a>
 			<% } else if (cmd.equals("logout")) { %>
-				<a href="<%=request.getContextPath() %>/logout">[ログインページ]</a>
+				<a href="<%= request.getContextPath() %>/logout">[ログインページ]</a>
 			<% } %>
 		</div>
 		<%@include file= "../common/footer.jsp" %>

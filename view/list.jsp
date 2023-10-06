@@ -17,14 +17,14 @@
 	<hr class="menu-border">
 	<table style="margin:auto; width:850px">
 		<tr>
-			<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
+			<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
 			<% if (user.getAuthority().equals("1")) { %>
-				<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath()%>/showCart">カート状況</a>]</td>
+				<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/showCart">カート状況</a>]</td>
 			<% } %>
 			<% if (user.getAuthority().equals("2")) { %>
-				<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/insert.jsp">書籍登録</a>]</td>
+				<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/view/insert.jsp">書籍登録</a>]</td>
 			<% } %>
-			<td style="text-align:center; width:508px; font-size:24px;">書籍一覧</td>
+			<td style="text-align:center; width:508px; font-size:24px;"><h3>書籍一覧</h3></td>
 			<td style="width:80px">&nbsp;</td>
 			<td style="width:80px">&nbsp;</td>
 		</tr>
@@ -35,7 +35,7 @@
 		<table style="margin: auto" class="mb-3">
 			<tr>
 				<td>
-					<form action="<%=request.getContextPath()%>/search">
+					<form action="<%= request.getContextPath() %>/search">
 						ISBN：<input type=text size="30" name="isbn"></input> Title：<input
 							type=text size="30" name="title"></input> 価格：<input type=text
 							size="30" name="price"></input> <input type="submit"
@@ -43,7 +43,7 @@
 					</form>
 				</td>
 				<td>
-					<form action="<%=request.getContextPath()%>/list">
+					<form action="<%= request.getContextPath() %>/list">
 						<input type="submit" name="searchall" value="全件表示"></input>
 					</form>
 				</td>
@@ -71,14 +71,14 @@
 			%>
 			<tr>
 				<td style="text-align: center; width: 200px">
-				<a href="<%=request.getContextPath()%>/detail?isbn=<%= book.getIsbn() %>&cmd=detail"><%=book.getIsbn()%></a></td>
+				<a href="<%= request.getContextPath() %>/detail?isbn=<%= book.getIsbn() %>&cmd=detail"><%= book.getIsbn() %></a></td>
 				<td style="text-align: center; width: 200px"><%= book.getTitle() %></td>
 				<td style="text-align: center; width: 200px"><%= formattedPrice %></td>
 
 				<% if (user.getAuthority().equals("1")) { %>
 					<td style="text-align: center; width: 125px">
-						<form action="<%=request.getContextPath()%>/insertIntoCart"  method="GET">
-							<input type="hidden" name="isbn" value="<%=book.getIsbn()%>">
+						<form action="<%= request.getContextPath() %>/insertIntoCart"  method="GET">
+							<input type="hidden" name="isbn" value="<%= book.getIsbn() %>">
 							<label for="quantity">数量：</label>
 							<input type="number" name="quantity" style="width:56px">
 							<input type="submit" value="カートに入れる">
@@ -88,10 +88,10 @@
 
 				<% if (user.getAuthority().equals("2")) { %>
 					<td style="text-align: center; width: 100px">
-						<a href="<%=request.getContextPath()%>/detail?isbn=<%=book.getIsbn()%>&cmd=update">変更</a>
+						<a href="<%= request.getContextPath() %>/detail?isbn=<%= book.getIsbn() %>&cmd=update">変更</a>
 					</td>
 					<td style="text-align: center; width: 100px">
-						<a href="<%=request.getContextPath()%>/delete?isbn=<%=book.getIsbn()%>">削除</a>
+						<a href="<%= request.getContextPath() %>/delete?isbn=<%= book.getIsbn() %>">削除</a>
 					</td>
 				<% } %>
 			</tr>

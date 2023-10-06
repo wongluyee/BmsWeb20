@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="bean.Book,util.MyFormat"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="bean.Book,util.MyFormat"%>
 <%
 	//リクエストスコープからのデータの取得
 	Book book = (Book)request.getAttribute("book");
@@ -20,9 +19,9 @@
 		<hr class="menu-border">
 		<table style="margin:auto; width:850px">
 			<tr>
-				<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
-				<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/list">書籍一覧</a>]</td>
-				<td style="text-align:center; font-size:24px;">カート追加</td>
+				<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
+				<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/list">書籍一覧</a>]</td>
+				<td style="text-align:center; font-size:24px;"><h3>カート追加</h3></td>
 				<td style="width:80px">&nbsp;</td>
 				<td style="width:80px">&nbsp;</td>
 			</tr>
@@ -35,7 +34,7 @@
 			<p class="fw-bold">価格: <%= fm.moneyFormat(book.getPrice()) %></p>
 			<p class="fw-bold">購入数: <%= quantity %></p>
 			<div class="mb-4">
-				<a class="btn btn-primary" href="<%=request.getContextPath()%>/showCart">カート確認</a>
+				<a class="btn btn-primary" href="<%= request.getContextPath() %>/showCart">カート確認</a>
 			</div>
 		</div>
 		<%@include file= "../common/footer.jsp" %>

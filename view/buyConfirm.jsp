@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList,bean.Sales,util.MyFormat"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.ArrayList,bean.Sales,util.MyFormat"%>
 <%
 	ArrayList<Sales> list = (ArrayList<Sales>) request.getAttribute("book_list");
 	MyFormat fm = new MyFormat();
@@ -19,7 +18,7 @@
 			<tr>
 				<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
 				<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/list">書籍一覧</a>]</td>
-				<td style="text-align:center; width:508px; font-size:24px;">購入品確認</td>
+				<td style="text-align:center; width:508px; font-size:24px;"><h3>購入品確認</h3></td>
 				<td style="width:80px">&nbsp;</td>
 				<td style="width:80px">&nbsp;</td>
 			</tr>

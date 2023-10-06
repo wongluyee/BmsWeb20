@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="bean.Book,util.MyFormat"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="bean.Book,util.MyFormat"%>
 <%
 	//リクエストスコープからのデータの取得
 	Book book = (Book)request.getAttribute("book");
@@ -20,15 +19,13 @@
 
 		<table style="margin:auto; width:850px">
 			<tr>
-				<tr>
-					<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
-					<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/insert.jsp">書籍登録</a>]</td>
-					<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/list">書籍一覧</a>]</td>
-					<td style="text-align:center; font-size:24px;">書籍詳細画面</td>
-					<td style="width:80px">&nbsp;</td>
-					<td style="width:80px">&nbsp;</td>
-					<td style="width:80px">&nbsp;</td>
-				</tr>
+				<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
+				<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/view/insert.jsp">書籍登録</a>]</td>
+				<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/list">書籍一覧</a>]</td>
+				<td style="text-align:center; font-size:24px;"><h3>書籍詳細画面</h3></td>
+				<td style="width:80px">&nbsp;</td>
+				<td style="width:80px">&nbsp;</td>
+				<td style="width:80px">&nbsp;</td>
 			</tr>
 		</table>
 		<hr class="menu-border">
@@ -36,10 +33,12 @@
 			<p class="fw-bold">ISBN: <%= book.getIsbn() %></p>
 			<p class="fw-bold">Title: <%= book.getTitle() %></p>
 			<p class="fw-bold">価格: <%= fm.moneyFormat(book.getPrice()) %></p>
-			<div class="mb-4">
-				<a class="btn btn-primary" href="<%=request.getContextPath()%>/detail?isbn=<%=book.getIsbn()%>&cmd=update">変更</a>
-				<a class="btn btn-primary" href="<%=request.getContextPath()%>/delete?isbn=<%=book.getIsbn()%>">削除</a>
-			</div>
+			<% if(user.getAuthority().equals("2")){ %>
+				<div class="mb-4">
+					<a class="btn btn-primary" href="<%= request.getContextPath()%>/detail?isbn=<%=book.getIsbn() %>&cmd=update">変更</a>
+					<a class="btn btn-primary" href="<%= request.getContextPath()%>/delete?isbn=<%=book.getIsbn() %>">削除</a>
+				</div>
+			<% } %>
 		</div>
 		<%@include file= "../common/footer.jsp" %>
 	</div>

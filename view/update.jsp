@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="bean.Book,util.MyFormat"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="bean.Book,util.MyFormat"%>
 <%
 	//リクエストスコープからのデータの取得
 	Book book = (Book)request.getAttribute("book");
@@ -20,15 +19,13 @@
 
 			<table style="margin:auto; width:850px">
 				<tr>
-					<tr>
-						<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
-						<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/insert.jsp">書籍登録</a>]</td>
-						<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/list">書籍一覧</a>]</td>
-						<td style="text-align:center; font-size:24px;">書籍変更</td>
-						<td style="width:80px">&nbsp;</td>
-						<td style="width:80px">&nbsp;</td>
-						<td style="width:80px">&nbsp;</td>
-					</tr>
+					<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
+					<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/view/insert.jsp">書籍登録</a>]</td>
+					<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/list">書籍一覧</a>]</td>
+					<td style="text-align:center; font-size:24px;"><h3>書籍変更</h3></td>
+					<td style="width:80px">&nbsp;</td>
+					<td style="width:80px">&nbsp;</td>
+					<td style="width:80px">&nbsp;</td>
 				</tr>
 			</table>
 			<hr class="menu-border">
@@ -42,8 +39,8 @@
 				<div>
 					<h5>変更後情報</h5>
 					<p class="fw-bold mb-2"><%= book.getIsbn() %></p>
-					<form action="<%=request.getContextPath()%>/update"  method="GET">
-						<input type="hidden" name="isbn" value="<%= book.getIsbn()%>">
+					<form action="<%= request.getContextPath() %>/update"  method="GET">
+						<input type="hidden" name="isbn" value="<%= book.getIsbn() %>">
 						<input type="text" class="form-control mb-2" name="title">
 						<input type="number" class="form-control mb-2" name="price">
 						<input class="btn btn-primary" type="submit" value="変更完了">

@@ -19,9 +19,9 @@
 
 	<table style="margin:auto; width:850px">
 		<tr>
-			<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
-			<td style="text-align:center; width:80px">[<a href="<%=request.getContextPath() %>/list">書籍一覧</a>]</td>
-			<td style="text-align:center; width:508px; font-size:24px;">書籍登録</td>
+			<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
+			<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/list">書籍一覧</a>]</td>
+			<td style="text-align:center; width:508px; font-size:24px;"><h3>書籍登録</h3></td>
 			<td style="width:80px">&nbsp;</td>
 			<td style="width:80px">&nbsp;</td>
 		</tr>
@@ -29,7 +29,7 @@
 
 	<hr class="menu-border">
 
-	<form action="<%=request.getContextPath()%>/insert"  method="GET">
+	<form action="<%= request.getContextPath() %>/insert"  method="GET">
 		<label for="isbn" class="form-label">ISBN</label>
 		<input type="text" class="form-control mb-3" name="isbn">
 		<label for="title" class="form-label">Title</label>
