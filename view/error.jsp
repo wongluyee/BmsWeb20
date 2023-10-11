@@ -11,8 +11,10 @@
 </head>
 <body>
 	<div class="container text-center">
-		<%@include file= "../common/header.jsp" %>
-		<div style="margin:auto;">
+		<div class="header">
+			<%@include file= "../common/header.jsp" %>
+		</div>
+		<div class="contents" style="margin:auto">
 			<h3>エラー</h3>
 			<% if (error != null) { %>
 				<p><%= error %></p>

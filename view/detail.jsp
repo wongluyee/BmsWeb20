@@ -13,23 +13,24 @@
 </head>
 <body>
 	<div class="container">
-		<%@include file= "../common/header.jsp" %>
-		<%@include file= "../common/userInfo.jsp" %>
-		<hr class="menu-border">
-
-		<table style="margin:auto; width:850px">
-			<tr>
-				<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
-				<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/view/insert.jsp">書籍登録</a>]</td>
-				<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/list">書籍一覧</a>]</td>
-				<td style="text-align:center; font-size:24px;"><h3>書籍詳細画面</h3></td>
-				<td style="width:80px">&nbsp;</td>
-				<td style="width:80px">&nbsp;</td>
-				<td style="width:80px">&nbsp;</td>
-			</tr>
-		</table>
-		<hr class="menu-border">
-		<div style="margin-bottom: 150px" class="text-center">
+		<div class="header">
+			<%@include file= "../common/header.jsp" %>
+			<%@include file= "../common/userInfo.jsp" %>
+			<hr>
+			<table style="margin:auto; width:850px">
+				<tr>
+					<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
+					<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/view/insert.jsp">書籍登録</a>]</td>
+					<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/list">書籍一覧</a>]</td>
+					<td style="text-align:center; font-size:24px;"><h3>書籍詳細画面</h3></td>
+					<td style="width:80px">&nbsp;</td>
+					<td style="width:80px">&nbsp;</td>
+					<td style="width:80px">&nbsp;</td>
+				</tr>
+			</table>
+			<hr>
+		</div>
+		<div class="contents text-center">
 			<p class="fw-bold">ISBN: <%= book.getIsbn() %></p>
 			<p class="fw-bold">Title: <%= book.getTitle() %></p>
 			<p class="fw-bold">価格: <%= fm.moneyFormat(book.getPrice()) %></p>

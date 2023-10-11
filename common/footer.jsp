@@ -1,3 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<hr class="border border-primary">
-<p style="margin: auto;border: 0;text-align: center;">Copyright (c) 2023 All rights reserved.</p>
+<div class="footer-wrap">
+	<hr class="border border-primary">
+	<div class="footer">
+		<div class="footer-links">
+			<a href="#"><i class="fab fa-instagram"></i></a>
+			<a href="#"><i class="fab fa-facebook"></i></a>
+			<a href="#"><i class="fab fa-twitter"></i></a>
+		</div>
+		<div class="footer-copyright">
+			Copyright © 2023 All rights reserved.
+		</div>
+	</div>
+</div>

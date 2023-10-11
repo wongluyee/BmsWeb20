@@ -11,18 +11,19 @@
 <html>
 	<head>
 		<%@include file= "../common/head.jsp" %>
-	<title>メニュー</title>
+		<title>メニュー</title>
 	</head>
 	<body>
-	<div class="container">
-		<%@include file= "../common/header.jsp" %>
-		<%@include file= "../common/userInfo.jsp" %>
+	<div class="container text-center">
+		<div class="header">
+			<%@include file= "../common/header.jsp" %>
+			<%@include file= "../common/userInfo.jsp" %>
+			<hr>
+			<h3 class="m-0" style="text-align:center;">Menu</h3>
+			<hr>
+		</div>
 
-		<hr class="menu-border">
-		<h3 class="m-0" style="text-align:center;">Menu</h3>
-		<hr class="menu-border">
-
-		<div class="d-flex align-items-center flex-column options">
+		<div class="contents d-flex align-items-center flex-column options">
 			<a class="btn btn-primary" href="<%= request.getContextPath() %>/list" style="width:320px;">書籍一覧 <i class="fa-solid fa-book"></i></a><br>
 
 			<!-- 一般ユーザーの場合 -->

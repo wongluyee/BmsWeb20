@@ -11,11 +11,11 @@
 </head>
 <body>
 	<div class="container text-center">
-		<%@include file= "../common/header.jsp" %>
-		<%@include file= "../common/userInfo.jsp" %>
-		<hr class="menu-border">
-		<table style="margin:auto; width:850px">
-			<tr>
+		<div class="header">
+			<%@include file= "../common/header.jsp" %>
+			<%@include file= "../common/userInfo.jsp" %>
+			<hr>
+			<table style="margin:auto; width:850px">
 				<tr>
 					<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/view/menu.jsp">メニュー</a>]</td>
 					<td style="text-align:center; width:80px">[<a href="<%= request.getContextPath() %>/list">書籍一覧</a>]</td>
@@ -23,51 +23,47 @@
 					<td style="width:80px">&nbsp;</td>
 					<td style="width:80px">&nbsp;</td>
 				</tr>
-		</table>
-		<hr class="menu-border">
-
-		<div style="margin-bottom: 80px">
+			</table>
+			<hr>
+		</div>
+		<div class="contents">
 			<table style="margin: auto">
-			<tr>
-				<th style="background-color: #6666ff; width: 200px; border-right: solid white">ISBN</th>
-				<th style="background-color: #6666ff; width: 200px; border-right: solid white">Title</th>
-				<th style="background-color: #6666ff; width: 200px; border-right: solid white">価格</th>
-				<th style="background-color: #6666ff; width: 200px; border-right: solid white">購入数</th>
-				<th style="background-color: #6666ff; width: 200px">削除</th>
-			</tr>
-
+				<tr>
+					<th style="background-color: #6666ff; width: 200px; border-right: solid white">ISBN</th>
+					<th style="background-color: #6666ff; width: 200px; border-right: solid white">Title</th>
+					<th style="background-color: #6666ff; width: 200px; border-right: solid white">価格</th>
+					<th style="background-color: #6666ff; width: 200px; border-right: solid white">購入数</th>
+					<th style="background-color: #6666ff; width: 200px">削除</th>
+				</tr>
 			<%
 				int total = 0;
-
 				if (list != null) {
 					for (int i = 0; i < list.size(); i++) {
 						Sales book = (Sales) list.get(i);
 						total += (book.getPrice() * book.getQuantity());
 						String formattedPrice = fm.moneyFormat(book.getPrice());
 			%>
-
-			<tr>
-				<td style="text-align: center; width: 200px">
-					<a href="<%= request.getContextPath() %>/detail?isbn=<%= book.getIsbn() %>&cmd=detail"><%= book.getIsbn() %></a>
-				</td>
-				<td style="text-align: center; width: 200px"><%= book.getTitle() %></td>
-				<td style="text-align: center; width: 200px"><%= formattedPrice %></td>
-				<td style="text-align: center; width: 200px"><%= book.getQuantity() %></td>
-				<td style="text-align: center; width: 200px">
-					<a href="<%= request.getContextPath() %>/showCart?delno=<%= i %>">削除</a>
-				</td>
-			</tr>
-
+				<tr>
+					<td style="text-align: center; width: 200px">
+						<a href="<%= request.getContextPath() %>/detail?isbn=<%= book.getIsbn() %>&cmd=detail"><%= book.getIsbn() %></a>
+					</td>
+					<td style="text-align: center; width: 200px"><%= book.getTitle() %></td>
+					<td style="text-align: center; width: 200px"><%= formattedPrice %></td>
+					<td style="text-align: center; width: 200px"><%= book.getQuantity() %></td>
+					<td style="text-align: center; width: 200px">
+						<a href="<%= request.getContextPath() %>/showCart?delno=<%= i %>">削除</a>
+					</td>
+				</tr>
 			<%
 					}
 				} else {
 			%>
-			<tr>
-				<td style="text-align: center; width: 200px">&nbsp;</td>
-				<td style="text-align: center; width: 200px">&nbsp;</td>
-				<td style="text-align: center; width: 200px">&nbsp;</td>
-				<td style="text-align: center; width: 200px">&nbsp;</td>
-			</tr>
+				<tr>
+					<td style="text-align: center; width: 200px">&nbsp;</td>
+					<td style="text-align: center; width: 200px">&nbsp;</td>
+					<td style="text-align: center; width: 200px">&nbsp;</td>
+					<td style="text-align: center; width: 200px">&nbsp;</td>
+				</tr>
 			<%
 				}
 			%>

@@ -80,7 +80,7 @@ public class OrderedItemDAO {
 		ArrayList<OrderedItem> list = new ArrayList<OrderedItem>();
 
 		try {
-			String sql = "SELECT o.user,b.title,o.quantity,o.date FROM bookinfo b, orderinfo o WHERE b.isbn = o.isbn and o.user = '" + userid + "'";
+			String sql = "SELECT o.user,b.title,o.quantity,o.date FROM bookinfo b, orderinfo o WHERE b.isbn = o.isbn and o.user = '" + userid + "' ORDER BY o.date";
 			con = getConnection();
 			smt = con.createStatement();
 			ResultSet rs = smt.executeQuery(sql);

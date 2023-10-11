@@ -26,8 +26,10 @@
 </head>
 <body>
 	<div class="container">
-		<%@include file= "../common/header.jsp" %>
-		<div style="margin-bottom: 250px">
+		<div class="header">
+			<%@include file= "../common/header.jsp" %>
+		</div>
+		<div class="content">
 			<h3>ログイン</h3>
 			<% if (message != null) { %>
 				<h5><%= message %></h5>
