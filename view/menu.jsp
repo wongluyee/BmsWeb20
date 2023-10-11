@@ -19,7 +19,7 @@
 			<%@include file= "../common/header.jsp" %>
 			<%@include file= "../common/userInfo.jsp" %>
 			<hr>
-			<h3 class="m-0" style="text-align:center;">Menu</h3>
+			<h3 class="m-0" style="text-align:center;">メニュー</h3>
 			<hr>
 		</div>
 

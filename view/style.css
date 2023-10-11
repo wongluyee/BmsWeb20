@@ -1,10 +1,24 @@
+.container {
+	position: relative;
+	min-height: 100vh;
+}
+
+.contents {
+	padding-bottom: 6rem;
+}
+
+.footer-wrap {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 6rem;
+}
+
 .footer {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	height: 36px;
 	color: rgba(0,0,0,0.3);
-	margin-bottom: 16px;
 }
 .footer-links {
 	display: flex;
