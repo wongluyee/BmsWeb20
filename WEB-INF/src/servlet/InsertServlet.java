@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
 import bean.Book;
+import bean.User;
 import dao.BookDAO;
 
 public class InsertServlet extends HttpServlet {
@@ -14,11 +15,25 @@ public class InsertServlet extends HttpServlet {
 		String cmd = "";
 
 		try {
+			// ユーザーの権限確認
+			// セッションから"user"のUserオブジェクトを取得する
+			HttpSession session = request.getSession();
+			User user = (User)session.getAttribute("user");
+
+			if (user == null) {
+				error = "セッションが切れたため、再度ログインしてください。";
+				cmd = "logout";
+				return;
+			}
+
+			if (user.getAuthority().equals("1")) {
+				error = "権限がないため、閲覧できませんでした。";
+				cmd = "menu";
+				return;
+			}
+
 			// BookDAOクラスのオブジェクトを生成
 			BookDAO bookDao = new BookDAO();
-
-			// 登録する書籍情報を格納するBookオブジェクトを生成
-			Book book = new Book();
 
 			// 画面からの入力情報を受け取るためのエンコードを設定
 			response.setContentType("text/html; charset=UTF-8");
@@ -52,9 +67,7 @@ public class InsertServlet extends HttpServlet {
 			}
 
 			// Bookオブジェクトに格納
-			book.setIsbn(isbn);
-			book.setTitle(title);
-			book.setPrice(intPrice);
+			Book book = new Book(isbn, title, intPrice);
 
 			// Bookオブジェクトに格納された書籍データをデータベースに登録
 			bookDao.insert(book);

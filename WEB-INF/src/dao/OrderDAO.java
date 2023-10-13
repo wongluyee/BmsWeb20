@@ -30,7 +30,6 @@ public class OrderDAO {
 		}
 
 		public void insert(Order order) {
-
 			Connection con = null;
 			Statement smt = null;
 

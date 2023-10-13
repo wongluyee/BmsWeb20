@@ -32,7 +32,6 @@ public class OrderedItemDAO {
 	}
 
 	public ArrayList<OrderedItem> selectAll() {
-
 		Connection con = null;
 		Statement smt = null;
 
@@ -73,7 +72,6 @@ public class OrderedItemDAO {
 
 	// 購入履歴機能(ShowHistoryOrderedItemServlet)
 	public ArrayList<OrderedItem> selectByUser(String userid) {
-
 		Connection con = null;
 		Statement smt = null;
 

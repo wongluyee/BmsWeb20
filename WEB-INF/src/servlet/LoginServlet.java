@@ -20,9 +20,6 @@ public class LoginServlet extends HttpServlet {
 			// UserDAOクラスのオブジェクトを生成
 			UserDAO userDao = new UserDAO();
 
-			// userオブジェクトを生成
-			User user = new User();
-
 			// エンコードを設定
 			response.setContentType("text/html; charset=UTF-8");
 
@@ -31,7 +28,7 @@ public class LoginServlet extends HttpServlet {
 			String password = request.getParameter("password");
 
 			// user情報を取得
-			user = userDao.selectByUser(userid, password);
+			User user = userDao.selectByUser(userid, password);
 
 			if (user == null) {
 				request.setAttribute("message", "入力内容が間違っています。");

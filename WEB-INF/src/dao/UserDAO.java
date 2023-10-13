@@ -31,7 +31,6 @@ public class UserDAO {
 
 	// ユーザー詳細機能
 	public User selectByUser(String userid) {
-
 		Connection con = null;
 		Statement smt = null;
 
@@ -69,7 +68,6 @@ public class UserDAO {
 	}
 
 	public User selectByUserEmail(String email) {
-
 		Connection con = null;
 		Statement smt = null;
 
@@ -108,7 +106,6 @@ public class UserDAO {
 
 	// For login
 	public User selectByUser(String userid, String password) {
-
 		Connection con = null;
 		Statement smt = null;
 
@@ -149,7 +146,6 @@ public class UserDAO {
 
 	// ユーザー一覧機能
 	public ArrayList<User> selectAll() {
-
 		Connection con = null;
 		Statement smt = null;
 
@@ -190,7 +186,6 @@ public class UserDAO {
 
 	// ユーザー登録機能
 	public int insert(User user) {
-
 		Connection con = null;
 		Statement smt = null;
 
@@ -282,7 +277,6 @@ public class UserDAO {
 
 	// ユーザー検索機能
 	public ArrayList<User> search(String userid) {
-
 		Connection con = null;
 		Statement smt = null;
 

@@ -28,8 +28,8 @@
 			<h5>初期データとして以下のデータを登録しました。</h5>
 			<table style="margin: auto" class="text-center">
 				<tr>
-					<th style="background-color: #6666ff; width: 200px">ISBN</th>
-					<th style="background-color: #6666ff; width: 200px">Title</th>
+					<th style="background-color: #6666ff; width: 200px; border-right: solid white">ISBN</th>
+					<th style="background-color: #6666ff; width: 200px; border-right: solid white">Title</th>
 					<th style="background-color: #6666ff; width: 200px">価格</th>
 				</tr>
 				<%

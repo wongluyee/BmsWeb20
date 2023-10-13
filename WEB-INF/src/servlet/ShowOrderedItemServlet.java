@@ -24,6 +24,12 @@ public class ShowOrderedItemServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			User user = (User)session.getAttribute("user");
 
+			if (user == null) {
+				error = "セッションが切れたため、再度ログインしてください。";
+				cmd = "logout";
+				return;
+			}
+
 			if (user.getAuthority().equals("1")) {
 				error = "権限がないため、閲覧できませんでした。";
 				cmd = "menu";

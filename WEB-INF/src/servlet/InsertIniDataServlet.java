@@ -75,11 +75,8 @@ public class InsertIniDataServlet extends HttpServlet {
 				String title = bookArray[1];
 				int price = Integer.parseInt(bookArray[2]);
 
-				// Bookのオブジェクトを生成し、setterを利用して①データのisbn, title, priceを設定する。(初期データの数分)
-				Book book = new Book();
-				book.setIsbn(isbn);
-				book.setTitle(title);
-				book.setPrice(price);
+				// Bookのオブジェクトを生成し、isbn, title, priceを設定する。(初期データの数分)
+				Book book = new Book(isbn, title, price);
 
 				// 取得した各BookをListに追加
 				list.add(book);

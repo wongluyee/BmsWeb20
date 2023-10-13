@@ -14,7 +14,7 @@ public class DeleteServlet extends HttpServlet {
 
 		try {
 			// BookDAOクラスのオブジェクトを生成
-			BookDAO objDao = new BookDAO();
+			BookDAO bookDao = new BookDAO();
 
 			// エンコードを設定
 			response.setContentType("text/html; charset=UTF-8");
@@ -30,7 +30,7 @@ public class DeleteServlet extends HttpServlet {
 			}
 
 			// 書籍情報を削除
-			objDao.delete(isbn);
+			bookDao.delete(isbn);
 
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";

@@ -14,12 +14,6 @@ public class DetailServlet extends HttpServlet {
 		String cmd = "";
 
 		try {
-			// BookDAOクラスのオブジェクトを生成
-			BookDAO objDao = new BookDAO();
-
-			// 表示する書籍情報を格納するBookオブジェクトを生成
-			Book book = new Book();
-
 			// エンコードを設定
 			response.setContentType("text/html; charset=UTF-8");
 
@@ -27,8 +21,11 @@ public class DetailServlet extends HttpServlet {
 			String isbn = request.getParameter("isbn");
 			cmd = request.getParameter("cmd");
 
+			// BookDAOクラスのオブジェクトを生成
+			BookDAO bookDao = new BookDAO();
+
 			// 書籍情報を取得
-			book = objDao.selectByIsbn(isbn);
+			Book book = bookDao.selectByIsbn(isbn);
 
 			// 取得した書籍情報を「book」という名前でリクエストスコープに登録
 			request.setAttribute("book", book);

@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
 import bean.Book;
+import bean.User;
 import dao.BookDAO;
 
 public class UpdateServlet extends HttpServlet {
@@ -14,11 +15,25 @@ public class UpdateServlet extends HttpServlet {
 		String cmd = "";
 
 		try {
-			// BookDAOクラスのオブジェクトを生成
-			BookDAO objDao = new BookDAO();
+			// ユーザーの権限確認
+			// セッションから"user"のUserオブジェクトを取得する
+			HttpSession session = request.getSession();
+			User user = (User)session.getAttribute("user");
 
-			// 更新後の書籍情報を格納するBookオブジェクトを生成
-			Book book = new Book();
+			if (user == null) {
+				error = "セッションが切れたため、再度ログインしてください。";
+				cmd = "logout";
+				return;
+			}
+
+			if (user.getAuthority().equals("1")) {
+				error = "権限がないため、閲覧できませんでした。";
+				cmd = "menu";
+				return;
+			}
+
+			// BookDAOクラスのオブジェクトを生成
+			BookDAO bookDao = new BookDAO();
 
 			// エンコードを設定
 			response.setContentType("text/html; charset=UTF-8");
@@ -51,12 +66,10 @@ public class UpdateServlet extends HttpServlet {
 			}
 
 			// Bookオブジェクトに格納
-			book.setIsbn(isbn);
-			book.setTitle(title);
-			book.setPrice(intPrice);
+			Book book = new Book(isbn, title, intPrice);
 
 			// Bookオブジェクトに格納された書籍データでデータベースを更新
-			objDao.update(book);
+			bookDao.update(book);
 
 		} catch (IllegalStateException e) {
 			error = "DB接続エラーの為、一覧表示はできませんでした。";
