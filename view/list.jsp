@@ -92,7 +92,7 @@
 						<a href="<%= request.getContextPath() %>/detail?isbn=<%= book.getIsbn() %>&cmd=update">変更</a>
 					</td>
 					<td style="text-align: center; width: 100px">
-						<a href="<%= request.getContextPath() %>/delete?isbn=<%= book.getIsbn() %>"onclick="return confirm('<%= book.getTitle() %>を削除しますか？')">削除</a>
+						<a href="<%= request.getContextPath() %>/delete?isbn=<%= book.getIsbn() %>" onclick="return confirm('<%= book.getTitle() %>を削除しますか？')">削除</a>
 					</td>
 				<% } %>
 			</tr>

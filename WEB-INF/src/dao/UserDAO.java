@@ -225,7 +225,7 @@ public class UserDAO {
 		Statement smt = null;
 
 		try {
-			String sql = "DELETE FROM userinfo WHERE isbn = '" + userid + "'";
+			String sql = "DELETE FROM userinfo WHERE user = '" + userid + "'";
 			con = getConnection();
 			smt = con.createStatement();
 			int count = smt.executeUpdate(sql);

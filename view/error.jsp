@@ -26,7 +26,9 @@
 			<% } else if (cmd.equals("logout")) { %>
 				<a href="<%= request.getContextPath() %>/logout">[ログインページ]</a>
 			<% } else if (cmd.equals("listUser")) { %>
-				<a href="<%= request.getContextPath() %>/listUser">[ユーザー一覧]</a>
+				<form action="<%= request.getContextPath() %>/listUser" method="POST">
+					[<button class="link-button" type="submit">ユーザー一覧</button>]
+				</form>
 			<% } %>
 		</div>
 		<%@include file= "../common/footer.jsp" %>
