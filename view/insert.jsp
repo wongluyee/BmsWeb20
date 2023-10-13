@@ -31,11 +31,11 @@
 		<div class="contents">
 			<form action="<%= request.getContextPath() %>/insert"  method="GET">
 				<label for="isbn" class="form-label">ISBN</label>
-				<input type="text" class="form-control mb-3" name="isbn">
+				<input type="text" class="form-control mb-3" name="isbn" required>
 				<label for="title" class="form-label">Title</label>
-				<input type="text" class="form-control mb-3" name="title">
+				<input type="text" class="form-control mb-3" name="title" required>
 				<label for="price" class="form-label">価格</label>
-				<input type="number" class="form-control mb-3" name="price">
+				<input type="number" class="form-control mb-3" name="price" required>
 				<input class="btn btn-primary" type="submit" value="登録">
 			</form>
 		</div>

@@ -36,8 +36,8 @@
 			<p class="fw-bold">価格: <%= fm.moneyFormat(book.getPrice()) %></p>
 			<% if(user.getAuthority().equals("2")){ %>
 				<div class="mb-4">
-					<a class="btn btn-primary" href="<%= request.getContextPath()%>/detail?isbn=<%=book.getIsbn() %>&cmd=update">変更</a>
-					<a class="btn btn-primary" href="<%= request.getContextPath()%>/delete?isbn=<%=book.getIsbn() %>">削除</a>
+					<a class="btn btn-primary" href="<%= request.getContextPath() %>/detail?isbn=<%= book.getIsbn() %>&cmd=update">変更 <i class="fa-solid fa-pen"></i></a>
+					<a class="btn btn-primary" onclick="return confirm('<%= book.getTitle() %>を削除しますか？')" href="<%= request.getContextPath() %>/delete?isbn=<%= book.getIsbn() %>">削除 <i class="fa-solid fa-trash-can"></i></a>
 				</div>
 			<% } %>
 		</div>

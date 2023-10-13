@@ -27,9 +27,10 @@ public class InsertServlet extends HttpServlet {
 			String isbn = request.getParameter("isbn");
 			String title = request.getParameter("title");
 			String price = request.getParameter("price");
+			int intPrice = Integer.parseInt(price);
 
 			// ISBNの入力チェック
-			if (isbn.equals("")) {
+			if (isbn.trim().equals("")) {
 				error = "ISBN未入力のため、書籍登録処理は行えませんでした。";
 				cmd = "list";
 				return;
@@ -44,20 +45,11 @@ public class InsertServlet extends HttpServlet {
 			}
 
 			// Titleの入力チェック
-			if (title.equals("")) {
+			if (title.trim().equals("")) {
 				error = "Title未入力のため、書籍登録処理は行えませんでした。";
 				cmd = "list";
 				return;
 			}
-
-			// Priceの入力チェック
-			if (price.equals("")) {
-				error = "Price未入力のため、書籍登録処理は行えませんでした。";
-				cmd = "list";
-				return;
-			}
-
-			int intPrice = Integer.parseInt(price);
 
 			// Bookオブジェクトに格納
 			book.setIsbn(isbn);

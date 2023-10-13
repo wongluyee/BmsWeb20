@@ -25,6 +25,8 @@
 				<a href="<%= request.getContextPath() %>/list">[書籍一覧]</a>
 			<% } else if (cmd.equals("logout")) { %>
 				<a href="<%= request.getContextPath() %>/logout">[ログインページ]</a>
+			<% } else if (cmd.equals("listUser")) { %>
+				<a href="<%= request.getContextPath() %>/listUser">[ユーザー一覧]</a>
 			<% } %>
 		</div>
 		<%@include file= "../common/footer.jsp" %>

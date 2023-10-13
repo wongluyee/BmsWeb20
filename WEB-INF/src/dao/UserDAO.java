@@ -68,6 +68,44 @@ public class UserDAO {
 		return user;
 	}
 
+	public User selectByUserEmail(String email) {
+
+		Connection con = null;
+		Statement smt = null;
+
+		User user = new User();
+
+		try {
+			String sql = "SELECT * FROM userinfo WHERE email = '" + email + "'";
+			con = getConnection();
+			smt = con.createStatement();
+			ResultSet rs = smt.executeQuery(sql);
+
+			while (rs.next()) {
+				user.setUserid(rs.getString("user"));
+				user.setPassword(rs.getString("password"));
+				user.setEmail(rs.getString("email"));
+				user.setAuthority(rs.getString("authority"));
+			}
+		} catch (Exception e) {
+			throw new IllegalStateException(e);
+		} finally {
+			if (smt != null) {
+				try {
+					smt.close();
+				} catch (SQLException ignore) {
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException ignore) {
+				}
+			}
+		}
+		return user;
+	}
+
 	// For login
 	public User selectByUser(String userid, String password) {
 
