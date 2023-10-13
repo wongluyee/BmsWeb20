@@ -44,14 +44,14 @@ public class UpdateServlet extends HttpServlet {
 			String price = request.getParameter("price");
 
 			// Titleの入力チェック
-			if (title.equals("")) {
+			if (title.trim().equals("")) {
 				error = "Title未入力のため、書籍更新処理は行えませんでした。";
 				cmd = "list";
 				return;
 			}
 
 			// Priceの入力チェック
-			if (price.equals("")) {
+			if (price.trim().equals("")) {
 				error = "Price未入力のため、書籍更新処理は行えませんでした。";
 				cmd = "list";
 				return;
