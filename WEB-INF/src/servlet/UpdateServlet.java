@@ -42,25 +42,11 @@ public class UpdateServlet extends HttpServlet {
 			String isbn = request.getParameter("isbn");
 			String title = request.getParameter("title");
 			String price = request.getParameter("price");
+			int intPrice = Integer.parseInt(price);
 
 			// Titleの入力チェック
 			if (title.trim().equals("")) {
 				error = "Title未入力のため、書籍更新処理は行えませんでした。";
-				cmd = "list";
-				return;
-			}
-
-			// Priceの入力チェック
-			if (price.trim().equals("")) {
-				error = "Price未入力のため、書籍更新処理は行えませんでした。";
-				cmd = "list";
-				return;
-			}
-
-			int intPrice = Integer.parseInt(price);
-
-			if (intPrice <= 0) {
-				error = "価格が0以下の為、書籍更新処理は行えませんでした。";
 				cmd = "list";
 				return;
 			}

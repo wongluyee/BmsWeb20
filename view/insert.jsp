@@ -35,7 +35,7 @@
 				<label for="title" class="form-label">Title</label>
 				<input type="text" class="form-control mb-3" name="title" required>
 				<label for="price" class="form-label">価格</label>
-				<input type="number" class="form-control mb-3" name="price" required>
+				<input type="number" min="1" class="form-control mb-3" name="price" required>
 				<input class="btn btn-primary" type="submit" value="登録">
 			</form>
 		</div>

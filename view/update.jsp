@@ -43,7 +43,7 @@
 					<form action="<%= request.getContextPath() %>/update"  method="GET">
 						<input type="hidden" name="isbn" value="<%= book.getIsbn() %>">
 						<input type="text" class="form-control mb-2" name="title" required>
-						<input type="number" class="form-control mb-2" name="price" required>
+						<input type="number" min="1" class="form-control mb-2" name="price" required>
 						<input class="btn btn-primary" type="submit" value="変更完了">
 					</form>
 				</div>
