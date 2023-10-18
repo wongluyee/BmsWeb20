@@ -17,9 +17,11 @@
 	<div class="container text-center">
 		<div class="header">
 			<%@include file= "../common/header.jsp" %>
-			<%@include file= "../common/userInfo.jsp" %>
-			<hr>
-			<h3 class="m-0" style="text-align:center;">メニュー</h3>
+			<div class="d-flex justify-content-between">
+				<h3 style="opacity:0">メニュー</h3>
+				<h3 class="m-0" style="text-align:center;">メニュー</h3>
+				<%@include file= "../common/userInfo.jsp" %>
+			</div>
 			<hr>
 		</div>
 

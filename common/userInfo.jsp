@@ -11,11 +11,21 @@
 		return;
 	}
 %>
-<div style="text-align:right;">
-	<p class="m-0">名前: <%= user.getUserid() %></p>
-	<% if (user.getAuthority().equals("1")) { %>
-		<p class="m-0">権限: 一般ユーザー</p>
-	<% } else if (user.getAuthority().equals("2")) { %>
-		<p class="m-0">権限: 管理者</p>
-	<% } %>
+<div class="text-end">
+	<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+		<i class="fa-solid fa-user"></i>
+	</button>
+	<ul class="dropdown-menu">
+		<li class="dropdown-item-text">
+			<p class="mb-0">名前: <%= user.getUserid() %></p>
+			<% if (user.getAuthority().equals("1")) { %>
+				<p class="mb-0">権限: 一般ユーザー</p>
+			<% } else if (user.getAuthority().equals("2")) { %>
+				<p class="mb-0">権限: 管理者</p>
+			<% } %>
+		</li>
+		<li><hr class="dropdown-divider"></li>
+		<li><a class="dropdown-item" href="<%= request.getContextPath() %>/view/changePassword.jsp">パスワード変更 <i class="fa-solid fa-key"></i></a></li>
+		<li><a class="dropdown-item" href="<%= request.getContextPath() %>/logout">ログアウト <i class="fa-solid fa-right-from-bracket"></i></a></li>
+	</ul>
 </div>
