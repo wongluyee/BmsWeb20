@@ -58,7 +58,7 @@ public class UpdateServlet extends HttpServlet {
 			bookDao.update(book);
 
 		} catch (IllegalStateException e) {
-			error = "DB接続エラーの為、一覧表示はできませんでした。";
+			error = "DB接続エラーの為、書籍更新はできませんでした。";
 			cmd = "menu";
 		} catch (Exception e) {
 			e.printStackTrace();
